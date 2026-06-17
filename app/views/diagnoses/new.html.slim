@@ -1,2 +1,38 @@
-h1 面接スマイルUP!
-p Hello world
+header
+  div.p-8.flex.flex-col.items-center.gap-2.border-b
+    h1.font-bold.text-xl 面接スマイルup!
+    p 面接スマイルup!は、気軽にサクッと使える面接印象改善アプリです。
+
+main.flex-1
+  div#lp.p-8.flex.flex-col.gap-4
+    section.flex.flex-col.items-center.gap-2
+      h2.font-bold.text-lg ユーザー登録不要
+      p 個人情報の登録なしでサクッと使えます。
+
+    section.flex.flex-col.items-center.gap-2
+      h2.font-bold.text-lg 1分で診断
+      p 面接官の質問に1分間答えるだけでOKです。
+
+    section.flex.flex-col.items-center.gap-2
+      h2.font-bold.text-lg 結果を即GET
+      p 印象診断と、改善アドバイスを即GETできます。
+
+    section.flex.flex-col.gap-2.mb-4
+      h2.font-bold.text-lg.text-center プライバシーも安心
+      ul.list-disc.pl-5
+        li 撮影した動画から切り出した写真をAIに送信し、印象分析に使用します。
+        li 送信された写真はAIの学習には使用されません。
+        li 撮影した動画はお使いのPC/スマホに一時的に保存され、サーバーには送信されません。また、動画はページを離れるときに自動で消去されます。
+
+    section.flex.flex-col.items-center.gap-2
+      p.text-xs ボタンを押すとすぐに診断が開始されます。
+      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded type="button" aria-label="診断開始" 診断を始める
+
+  div#camera-check data-hidden="true"
+
+  div#diagnosis data-hidden="true"
+
+  div#feedback data-hidden="true"
+
+footer.text-center.p-2.border-t
+  small.text-xs © 2026 面接スマイルアップ

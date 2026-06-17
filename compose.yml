@@ -2,7 +2,8 @@ services:
   web:
     build:
       dockerfile: Dockerfile.dev
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -b '0.0.0.0'"
+    tty: true
+    command: bash -c "rm -f tmp/pids/server.pid && bin/dev"
     volumes:
       - .:/rails
       - bundle_cache:/usr/local/bundle
