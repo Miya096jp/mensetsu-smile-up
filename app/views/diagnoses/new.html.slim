@@ -3,8 +3,8 @@ header
     h1.font-bold.text-xl 面接スマイルup!
     p 面接スマイルup!は、気軽にサクッと使える面接印象改善アプリです。
 
-main.flex-1
-  div#lp.p-8.flex.flex-col.gap-4
+main.flex-1 data-controller="step"
+  div#lp.p-8.flex.flex-col.gap-4 data-step-target="lp"
     section.flex.flex-col.items-center.gap-2
       h2.font-bold.text-lg ユーザー登録不要
       p 個人情報の登録なしでサクッと使えます。
@@ -26,14 +26,14 @@ main.flex-1
 
     section.flex.flex-col.items-center.gap-2.
       p.text-xs ボタンを押すとすぐに診断が開始されます。
-      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded type="button" aria-label="診断開始" 診断開始
+      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-3.rounded type="button" data-action="click->step#show" data-step-step-param="cameraCheck" aria-label="診断開始" 診断開始
 
-  div#camera-check.fixed.inset-0.z-50.flex.flex-col.gap-2.p-8.bg-black.hidden
+  div#camera-check.fixed.inset-0.z-50.flex.flex-col.gap-2.p-8.bg-black.hidden data-step-target="cameraCheck"
     div.flex.justify-end.mr-4
-      button.text-white.bold.text-lg type="button" aria-label="閉じる"
+      button.text-white.bold.text-lg type="button" aria-label="閉じる" data-action="click->step#close"
         | ×
-    div.relative.aspect-9/16.overflow-hidden
-      video.w-full.h-full.object-cover.flex-1.bg-gray-500 autoplay playsinline muted
+    div.flex-1.relative.aspect-9/16.overflow-hidden
+      video.w-full.h-full.object-cover.bg-gray-500 autoplay playsinline muted
       canvas.hidden
       div.absolute.inset-x-0.border-b.border-white/50.pointer-events-none style="top: 5%"
       div.absolute.inset-x-0.border-t.border-white/50.pointer-events-none style="bottom: 5%"
