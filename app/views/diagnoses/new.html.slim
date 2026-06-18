@@ -24,11 +24,26 @@ main.flex-1
         li 送信された写真はAIの学習には使用されません。
         li 撮影した動画はお使いのPC/スマホに一時的に保存され、サーバーには送信されません。また、動画はページを離れるときに自動で消去されます。
 
-    section.flex.flex-col.items-center.gap-2
+    section.flex.flex-col.items-center.gap-2.
       p.text-xs ボタンを押すとすぐに診断が開始されます。
-      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded type="button" aria-label="診断開始" 診断を始める
+      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded type="button" aria-label="診断開始" 診断開始
 
-  div#camera-check data-hidden="true"
+  div#camera-check.fixed.inset-0.z-50.flex.flex-col.gap-2.p-8.bg-black.hidden
+    div.flex.justify-end.mr-4
+      button.text-white.bold.text-lg type="button" aria-label="閉じる"
+        | ×
+    div.relative.aspect-9/16.overflow-hidden
+      video.w-full.h-full.object-cover.flex-1.bg-gray-500 autoplay playsinline muted
+      canvas.hidden
+      div.absolute.inset-x-0.border-b.border-white/50.pointer-events-none style="top: 5%"
+      div.absolute.inset-x-0.border-t.border-white/50.pointer-events-none style="bottom: 5%"
+      div.absolute.left-1/2.border-l.border-white/50.pointer-events-none style="top: 5%; bottom: 5%"
+      div.absolute.border.border-white/60.rounded-sm.pointer-events-none style="top: 10%; left: 10%; right: 10%; bottom: 30%"
+    div.flex.flex-col.items-center.gap-2
+      p.text-white.text-sm 顔をボックスにあてはめてから「次へ」を押してください
+      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items type="button" aria-label="次へ" 次へ
+
+
 
   div#diagnosis data-hidden="true"
 
