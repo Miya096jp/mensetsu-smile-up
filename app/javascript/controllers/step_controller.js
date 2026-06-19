@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["lp", "cameraCheck"]
+  static outlets = ["camera-check"]
 
   show(e) {
     this.currentStep = this[`${e.params.step}Target`]
@@ -12,4 +13,9 @@ export default class extends Controller {
     this.currentStep.classList.add("hidden")
     this.lpTarget.classList.remove("hidden")
   }
+
+  startCamera() {
+    this.cameraCheckOutlet.startCamera()
+  }
+
 }
