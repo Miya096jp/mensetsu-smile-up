@@ -40,11 +40,11 @@ main.flex-1 data-controller="step" data-step-camera-check-outlet="#camera-check"
       div.absolute.border.border-white/60.rounded-sm.pointer-events-none style="top: 10%; left: 10%; right: 10%; bottom: 30%"
     div.flex.flex-col.items-center.gap-2
       p.text-white.text-sm 顔をボックスにあてはめてから「次へ」を押してください
-      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items type="button" aria-label="次へ" 次へ
+      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items type="button" data-action="click->step#show" data-step-step-param="guide" aria-label="次へ" 次へ
 
-  div#guide.fixed.inset-0.z-50.flex.flex-col.p-8.bg-black.hidden
+  div#guide.fixed.inset-0.z-50.flex.flex-col.p-8.bg-black.hidden data-step-target="guide"
     div.flex.justify-end.mr-4.mb-4
-      button.text-white.bold.text-lg type="button" aria-label="閉じる"
+      button.text-white.bold.text-lg type="button" aria-label="閉じる" data-action="click->step#close"
         | ×
     div.flex.flex-col.flex-1.items-center.justify-center.gap-6
       div.flex.flex-col.text-white.gap-2.border.rounded-md.p-8
