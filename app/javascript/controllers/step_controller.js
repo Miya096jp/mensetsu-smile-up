@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
-  static targets = ["lp", "cameraCheck", "guide"]
+  static targets = ["lp", "cameraCheck", "guide", "diagnosis"]
   static outlets = ["camera-check"]
 
   connect() {
@@ -8,7 +8,11 @@ export default class extends Controller {
   }
 
   show(e) {
-    const nextStep = this[`${e.params.step}Target`]
+    this.switchTo(e.params.step)
+  }
+
+  switchTo(step) {
+    const nextStep = this[`${step}Target`]
     nextStep.classList.remove("hidden")
     this.currentStep.classList.add("hidden")
     this.currentStep = nextStep
@@ -23,5 +27,14 @@ export default class extends Controller {
   startCamera() {
     this.cameraCheckOutlet.startCamera()
   }
+
+  proceedFromCameraCheck() {
+    if (localStorage.saveKey === "checked") {
+      this.switchTo("diagnosis")
+    } else {
+      this.switchTo("guide")
+    }
+  }
+
 
 }
