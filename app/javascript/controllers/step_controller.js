@@ -13,6 +13,9 @@ export default class extends Controller {
 
   switchTo(step) {
     const nextStep = this[`${step}Target`]
+    if (step === "diagnosis") {
+      this.diagnosisOutlet.reset()
+    }
     nextStep.classList.remove("hidden")
     this.currentStep.classList.add("hidden")
     this.currentStep = nextStep
