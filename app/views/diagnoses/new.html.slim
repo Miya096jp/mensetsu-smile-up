@@ -3,7 +3,7 @@ header
     h1.font-bold.text-xl 面接スマイルup!
     p 面接スマイルup!は、気軽にサクッと使える面接印象改善アプリです。
 
-main.flex-1 data-controller="step" data-step-camera-check-outlet="#camera-check"
+main.flex-1 data-controller="step" data-step-camera-check-outlet="#camera-check" data-step-diagnosis-outlet="#diagnosis"
   div#lp.p-8.flex.flex-col.gap-4 data-step-target="lp"
     section.flex.flex-col.items-center.gap-2
       h2.font-bold.text-lg ユーザー登録不要
@@ -56,11 +56,22 @@ main.flex-1 data-controller="step" data-step-camera-check-outlet="#camera-check"
       div.flex.gap-2
         input type="checkbox" id="skip-guide" data-guide-target="checkBox"
         label.text-white.flex for="skip-guide" 次回からこの説明を表示しない
-      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items type="button" aria-label="次へ" data-action="click->guide#check click->step#show" data-step-step-param="diagnosis" 次へ
+      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items type="button" aria-label="次へ" data-action="click->guide#check click->step#show click->step#startCamera" data-step-step-param="diagnosis" 次へ
     
 
-  div#diagnosis.fixed.inset-0.z-50.flex.flex-col.p-8.bg-black.hidden data-step-target="diagnosis"
-    h2.text-white 診断画面
+  div#diagnosis.fixed.inset-0.z-50.flex.flex-col.gap-2.p-8.bg-black.hidden data-step-target="diagnosis" data-controller="diagnosis"
+    div.flex.justify-end.mr-4.mb-4
+      button.text-white.bold.text-lg type="button" aria-label="閉じる" data-action="click->step#close click->diagnosis#stop"
+        | ×
+    div.relative.flex-1.aspect-9/16.overflow-hidden
+      video.w-full.h-full.object-cover data-diagnosis-target="interviewVideo" src="/videos/sample.mp4" type="video/mp4"
+      div.absolute.inset-0.bg-black/70 data-diagnosis-target="overlay"
+      video.absolute.w-24.bottom-2.right-2.aspect-9/16.object-cover data-diagnosis-target="preview" autoplay playsinline muted
+      canvas.hidden
+    div.flex.flex-col.items-center.gap-2
+      p.text-white.text-sm data-diagnosis-target="message" 準備ができたらスタートボタンを押してください。
+      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items.disabled:opacity-20 type="button" data-action="click->diagnosis#start" data-diagnosis-target="startButton" aria-label="スタート" スタート
+      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items.hidden type="button" data-diagnosis-target="resultButton" aria-label="診断結果を見る" 診断結果を見る
 
   div#feedback data-hidden="true"
 
