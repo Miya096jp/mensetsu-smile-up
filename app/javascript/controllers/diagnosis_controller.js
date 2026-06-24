@@ -57,6 +57,7 @@ export default class extends Controller {
     this.startButtonTarget.disabled = false
     this.messageTarget.textContent = "準備ができたらスタートボタンを押してください。"
     this.overlayTarget.classList.remove("hidden")
+    this.previewTarget.classList.remove("hidden")
   }
 }
 
