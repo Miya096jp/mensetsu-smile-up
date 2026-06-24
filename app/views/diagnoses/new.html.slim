@@ -67,7 +67,7 @@ main.flex-1 data-controller="step" data-step-camera-check-outlet="#camera-check"
       video.w-full.h-full.object-cover data-diagnosis-target="interviewVideo" src="/videos/sample.mp4" type="video/mp4"
       div.absolute.inset-0.bg-black/70 data-diagnosis-target="overlay"
       video.absolute.w-24.bottom-2.right-2.aspect-9/16.object-cover data-diagnosis-target="preview" autoplay playsinline muted
-      canvas.hidden
+      canvas.hidden data-diagnosis-target="canvas"
     div.flex.flex-col.items-center.gap-2
       p.text-white.text-sm data-diagnosis-target="message" 準備ができたらスタートボタンを押してください。
       button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items.disabled:opacity-20 type="button" data-action="click->diagnosis#start" data-diagnosis-target="startButton" aria-label="スタート" スタート
