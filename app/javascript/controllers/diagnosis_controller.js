@@ -44,10 +44,11 @@ export default class extends Controller {
     this.capturedCount = 0
     this.capture();
 
-    const intervalTimer = setInterval(() => {
+    const intervalTimer = setInterval(async () => {
       this.capture();
       if (this.capturedCount >= this.totalShotsValue) {
         clearInterval(intervalTimer);
+        await this.fetch();
       }
 
     }, this.intervalDurationValue)
@@ -85,6 +86,25 @@ export default class extends Controller {
     )
 
     return canvas.toDataURL("image/jpeg", 0.8)
+  }
+
+  async fetch() {
+    const formData = new FormData();
+    this.capturedPhotos.forEach((dataUrl) => {
+      formData.append("photos[]", dataUrl)
+    })
+
+    try {
+      await fetch("/diagnoses", {
+        method: "POST",
+        body: formData,
+        headers: {
+          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+        }
+      });
+    } catch (e) {
+      console.warn("POST failed", e)
+    }
   }
 
   async stop() {
