@@ -3,6 +3,8 @@ class DiagnosesController < ApplicationController
   end
 
   def create
+    diagnosis = Llm::DiagnoseImpression.call(photos: photo_params[:photos])
+    render json: diagnosis
   end
 
   def photo_params

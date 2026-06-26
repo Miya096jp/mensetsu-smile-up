@@ -68,3 +68,7 @@ group :test do
 end
 
 gem "tailwindcss-rails", "~> 4.5"
+
+gem "ruby_llm", "~> 1.16"
+
+gem "ruby_llm-test", "~> 0.2.0", group: :test

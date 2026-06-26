@@ -40,12 +40,12 @@ export default class extends Controller {
     }
   }
 
-  startIntervalCapture() {
+  async startIntervalCapture() {
     this.capturedCount = 0
-    this.capture();
+    await this.capture();
 
     const intervalTimer = setInterval(async () => {
-      this.capture();
+      await this.capture();
       if (this.capturedCount >= this.totalShotsValue) {
         clearInterval(intervalTimer);
         await this.fetch();
@@ -54,8 +54,8 @@ export default class extends Controller {
     }, this.intervalDurationValue)
   }
 
-  capture() {
-    const dataURL = this.captureFrame();
+  async capture() {
+    const dataURL = await this.captureFrame();
     this.capturedPhotos.push(dataURL);
     this.capturedCount++;
   }
@@ -85,7 +85,9 @@ export default class extends Controller {
       400
     )
 
-    return canvas.toDataURL("image/jpeg", 0.8)
+    return new Promise((resolve) => {
+      canvas.toBlob((blob) => resolve(blob), "image/jpeg", 0.8)
+    })
   }
 
   async fetch() {
