@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
-  static targets = ["interviewVideo", "overlay", "canvas", "message", "preview", "feedback", "startButton", "resultButton", "backToHomeButton"]
+  static targets = ["interviewVideo", "overlay", "canvas", "message", "preview", "feedback", "startButton", "resultButton", "backToHomeButton", "loader", "aiDiagnosis"]
   static values = {
     prepDuration: { type: Number, default: 15000 },
     intervalDuration: { type: Number, default: 10000 },
@@ -97,16 +97,27 @@ export default class extends Controller {
     })
 
     try {
-      await fetch("/diagnoses", {
+      const response = await fetch("/diagnoses", {
         method: "POST",
         body: formData,
         headers: {
           "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
         }
       });
+
+      this.loaderTarget.classList.remove("hidden")
+
+      if (response.ok) {
+        const data = await response.json()
+        this.aiDiagnosisTarget.textContent = data.content.text;
+        this.aiDiagnosisTarget.classList.remove("hidden");
+        this.loaderTarget.classList.add("hidden");
+      }
     } catch (e) {
       console.warn("POST failed", e)
     }
+
+
   }
 
   async stop() {
