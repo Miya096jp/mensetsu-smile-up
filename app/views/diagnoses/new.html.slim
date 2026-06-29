@@ -68,12 +68,18 @@ main.flex-1 data-controller="step" data-step-camera-check-outlet="#camera-check"
       div.absolute.inset-0.bg-black/70 data-diagnosis-target="overlay"
       video.absolute.w-24.bottom-2.right-2.aspect-9/16.object-cover data-diagnosis-target="preview" autoplay playsinline muted
       canvas.hidden data-diagnosis-target="canvas"
+    div#feedback.fixed.inset-0.bg-white.flex.flex-col.items-center.gap-2.p-8.hidden data-diagnosis-target="feedback"
+      h2.text-lg.font-bold.text-gray-800 診断結果
+      div.hidden data-diagnosis-target="loader"
+        p Loading...
+      div.flex-1.hidden data-diagnosis-target="aiDiagnosis"
+        p.text-gray-800 診断結果
+      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items type="button" data-diagnosis-target="backToHomeButton" data-action="click->step#show" data-step-step-param="lp" aria-label="トップへ戻る" トップへ戻る
     div.flex.flex-col.items-center.gap-2
       p.text-white.text-sm data-diagnosis-target="message" 準備ができたらスタートボタンを押してください。
       button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items.disabled:opacity-20 type="button" data-action="click->diagnosis#start" data-diagnosis-target="startButton" aria-label="スタート" スタート
-      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items.hidden type="button" data-diagnosis-target="resultButton" aria-label="診断結果を見る" 診断結果を見る
+      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items.hidden type="button" data-diagnosis-target="resultButton" data-action="click->diagnosis#showFeedback" aria-label="診断結果を見る" 診断結果を見る
 
-  div#feedback data-hidden="true"
 
 footer.text-center.p-2.border-t
   small.text-xs © 2026 面接スマイルアップ
