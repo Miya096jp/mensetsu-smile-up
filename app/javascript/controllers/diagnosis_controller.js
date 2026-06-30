@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
-  static targets = ["interviewVideo", "overlay", "canvas", "message", "preview", "startButton", "resultButton"]
+  static targets = ["interviewVideo", "overlay", "canvas", "message", "preview", "feedback", "startButton", "resultButton", "backToHomeButton", "loader", "aiDiagnosis"]
   static values = {
     prepDuration: { type: Number, default: 15000 },
     intervalDuration: { type: Number, default: 10000 },
@@ -97,16 +97,27 @@ export default class extends Controller {
     })
 
     try {
-      await fetch("/diagnoses", {
+      const response = await fetch("/diagnoses", {
         method: "POST",
         body: formData,
         headers: {
           "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
         }
       });
+
+      this.loaderTarget.classList.remove("hidden")
+
+      if (response.ok) {
+        const data = await response.json()
+        this.aiDiagnosisTarget.textContent = data.content.text;
+        this.aiDiagnosisTarget.classList.remove("hidden");
+        this.loaderTarget.classList.add("hidden");
+      }
     } catch (e) {
       console.warn("POST failed", e)
     }
+
+
   }
 
   async stop() {
@@ -127,12 +138,24 @@ export default class extends Controller {
     this.previewTarget.srcObject.getTracks().forEach(track => {
       track.stop();
     })
-
   }
 
+  showFeedback() {
+    this.interviewVideoTarget.classList.add("hidden")
+    this.previewTarget.classList.add("hidden")
+    this.resultButtonTarget.classList.add("hidden")
+    this.messageTarget.classList.add("hidden")
+    this.feedbackTarget.classList.remove("hidden")
+    this.backToHomeButtonTarget.classList.remove("hidden")
+  }
+
+
   reset() {
+    this.feedbackTarget.classList.add("hidden")
+    this.interviewVideoTarget.classList.remove("hidden")
     this.resultButtonTarget.classList.add("hidden")
     this.startButtonTarget.classList.remove("hidden")
+    this.messageTarget.classList.remove("hidden")
     this.startButtonTarget.disabled = false
     this.messageTarget.textContent = "準備ができたらスタートボタンを押してください。"
     this.overlayTarget.classList.remove("hidden")
