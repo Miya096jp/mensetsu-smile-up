@@ -110,9 +110,12 @@ export default class extends Controller {
       if (response.ok) {
         const data = await response.json()
         this.aiDiagnosisTarget.textContent = data.content.text;
-        this.aiDiagnosisTarget.classList.remove("hidden");
-        this.loaderTarget.classList.add("hidden");
+      } else {
+        const data = await response.json()
+        this.aiDiagnosisTarget.textContent = data.message;
       }
+      this.aiDiagnosisTarget.classList.remove("hidden");
+      this.loaderTarget.classList.add("hidden");
     } catch (e) {
       console.warn("POST failed", e)
     }

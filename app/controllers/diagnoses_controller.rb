@@ -3,8 +3,13 @@ class DiagnosesController < ApplicationController
   end
 
   def create
-    diagnosis = Llm::DiagnoseImpression.call(photos: photo_params[:photos])
-    render json: diagnosis
+    begin
+      diagnosis = Llm::DiagnoseImpression.call(photos: photo_params[:photos])
+      render json: diagnosis, status: :ok
+    rescue => e
+      Rails.logger.error("[API failed] #{e.class}: #{e.message} | #{e.backtrace&.first(3)&.join(' <- ')}")
+      render json: { message: "AI回答の取得に失敗しました" }, status: :internal_server_error
+    end
   end
 
   def photo_params
