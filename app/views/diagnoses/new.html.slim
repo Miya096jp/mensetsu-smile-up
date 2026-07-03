@@ -1,6 +1,7 @@
 header.bg-amber-50
   div.p-8.flex.flex-col.items-center.gap-2.border-b.border-gray-300.text-gray-800
-    h1.font-bold.text-xl 面接スマイルup!
+    h1
+      = image_tag "logo.png", alt: "面接スマイルup!", class: "h-32"
     p.text-sm 面接スマイルup!は、気軽にサクッと使える面接印象改善アプリです。
 
 main.flex-1.bg-amber-50 data-controller="step" data-step-camera-check-outlet="#camera-check" data-step-diagnosis-outlet="#diagnosis"
