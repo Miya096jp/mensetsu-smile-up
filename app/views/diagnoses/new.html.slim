@@ -41,10 +41,10 @@ main.flex-1.bg-amber-50 data-controller="step" data-step-camera-check-outlet="#c
         | ×
     div.relative.flex-1.md:flex-initial.md:aspect-16/9.md:max-w-4xl.md:w-full.md:mx-auto.overflow-hidden
       video.w-full.h-full.object-cover.bg-gray-500 data-camera-check-target="video" autoplay playsinline muted
-      div.absolute.inset-x-0.border-b.border-white/50.pointer-events-none style="top: 5%"
-      div.absolute.inset-x-0.border-t.border-white/50.pointer-events-none style="bottom: 5%"
-      div.absolute.left-1/2.border-l.border-white/50.pointer-events-none style="top: 5%; bottom: 5%"
-      div.absolute.border.border-white/60.rounded-sm.pointer-events-none style="top: 10%; left: 10%; right: 10%; bottom: 30%"
+      div.absolute.inset-x-0.border-b.border-white/50.pointer-events-none class="top-[5%]"
+      div.absolute.inset-x-0.border-t.border-white/50.pointer-events-none class="bottom-[5%]"
+      div.absolute.left-1/2.border-l.border-white/50.pointer-events-none class="top-[5%] bottom-[5%]"
+      div.absolute.border.border-white/60.rounded-sm.pointer-events-none class="top-[10%] left-[5%] right-[5%] bottom-[30%] md:top-[10%] md:left-[30%] md:right-[30%] md:bottom-[15%]"
     div.flex.flex-col.items-center.gap-4
       p.text-white.text-sm 顔をボックスにあてはめてから「次へ」を押してください
       button.bg-amber-500.hover:bg-amber-600.cursor-pointer.text-white.font-bold.py-2.px-4.rounded.items type="button" data-action="click->step#proceedFromCameraCheck" aria-label="次へ" 次へ
