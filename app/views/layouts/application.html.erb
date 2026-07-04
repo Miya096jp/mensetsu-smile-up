@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Mensetsu Smile Up" %></title>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <title><%= content_for(:title) || "面接スマイルup!" %></title>
+    <meta name="description" content="ユーザー登録不要、1分で面接の印象をAI診断。即座に改善アドバイスを受け取れます。">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Mensetsu Smile Up">
+    <meta name="application-name" content="面接スマイルup!">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta property="og:title" content="面接スマイルup!">
+    <meta
+      property="og:description"
+      content="ユーザー登録不要、1分で面接の印象をAI診断。即座に改善アドバイスを受け取れます。"
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mensetsu-smile-up/">
+    <meta property="og:image" content="https://mensetsu-smile-up/ogp.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="面接スマイルup!">
+    <meta property="og:locale" content="ja_JP">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:alt" content="面接スマイルup!のロゴ">
+    `
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
