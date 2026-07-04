@@ -1,85 +1,99 @@
-header
-  div.p-8.flex.flex-col.items-center.gap-2.border-b
-    h1.font-bold.text-xl 面接スマイルup!
-    p 面接スマイルup!は、気軽にサクッと使える面接印象改善アプリです。
+header.bg-amber-50
+  div.p-8.flex.flex-col.items-center.gap-2.border-b.border-gray-300.text-gray-800
+    h1
+      = image_tag "logo.png", alt: "面接スマイルup!", class: "h-32"
+    p.text-sm 面接スマイルup!は、気軽にサクッと使える面接印象改善アプリです。
 
-main.flex-1 data-controller="step" data-step-camera-check-outlet="#camera-check" data-step-diagnosis-outlet="#diagnosis"
-  div#lp.p-8.flex.flex-col.gap-4 data-step-target="lp"
-    section.flex.flex-col.items-center.gap-2
-      h2.font-bold.text-lg ユーザー登録不要
-      p 個人情報の登録なしでサクッと使えます。
+main.flex-1.bg-amber-50 data-controller="step" data-step-camera-check-outlet="#camera-check" data-step-diagnosis-outlet="#diagnosis"
+  div#lp.p-8 data-step-target="lp"
+    div.flex.flex-col.gap-8.text-gray-800.md:max-w-2xl.md:mx-auto
+      section.flex.flex-col.items-center.gap-2
+        h2.font-bold.text-lg 🔑 ユーザー登録不要
+        p 個人情報の登録なしでサクッと使えます。
 
-    section.flex.flex-col.items-center.gap-2
-      h2.font-bold.text-lg 1分で診断
-      p 面接官の質問に1分間答えるだけでOKです。
+      section.flex.flex-col.items-center.gap-2
+        h2.font-bold.text-lg ⏱️ 1分で診断
+        p 面接官の質問に1分間答えるだけでOKです。
 
-    section.flex.flex-col.items-center.gap-2
-      h2.font-bold.text-lg 結果を即GET
-      p 印象診断と、改善アドバイスを即GETできます。
+      section.flex.flex-col.items-center.gap-2
+        h2.font-bold.text-lg 📩 結果を即GET
+        p 印象診断と、改善アドバイスを即GETできます。
 
-    section.flex.flex-col.gap-2.mb-4
-      h2.font-bold.text-lg.text-center プライバシーも安心
-      ul.list-disc.pl-5
-        li 撮影した動画から切り出した写真をAIに送信し、印象分析に使用します。
-        li 送信された写真はAIの学習には使用されません。
-        li 撮影した動画はお使いのPC/スマホに一時的に保存され、サーバーには送信されません。また、動画はページを離れるときに自動で消去されます。
+      section.flex.flex-col.gap-2
+        h2.font-bold.text-lg.text-center 🔒 プライバシーも安心
+        ul.flex.flex-col.gap-2.text-sm.max-w-md.mx-auto.md:text-base
+          li.flex 
+            span.text-green-600.mr-1 ✔︎
+            | 撮影した動画から切り出した写真をAIに送信し、印象分析に使用します。
+          li.flex 
+            span.text-green-600.mr-1 ✔︎
+            | 送信された写真はAIの学習には使用されません。
+          li.flex
+            span.text-green-600.mr-1 ✔︎
+            | 撮影した動画はお使いのPC/スマホに一時的に保存され、サーバーには送信されません。また、動画はページを離れるときに自動で消去されます。
 
-    section.flex.flex-col.items-center.gap-2.
-      p.text-xs ボタンを押すとすぐに診断が開始されます。
-      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-3.rounded type="button" data-action="click->step#show click->step#startCamera" data-step-step-param="cameraCheck" aria-label="診断開始" 診断開始
+      section.flex.flex-col.items-center.gap-4.py-4
+        p.text-sm ボタンを押すとすぐに診断が開始されます。
+        button.bg-amber-500.hover:bg-amber-600.cursor-pointer.text-gray-50.text-2xl.font-bold.py-2.px-6.rounded type="button" data-action="click->step#show click->step#startCamera" data-step-step-param="cameraCheck" aria-label="診断開始" 診断開始
 
-  div#camera-check.fixed.inset-0.z-50.flex.flex-col.gap-2.p-8.bg-black.hidden data-step-target="cameraCheck" data-controller="camera-check"
+  div#camera-check.fixed.inset-0.z-50.flex.flex-col.gap-2.md:gap-8.p-8.bg-black.hidden data-step-target="cameraCheck" data-controller="camera-check"
     div.flex.justify-end.mr-4
-      button.text-white.bold.text-lg type="button" aria-label="閉じる" data-action="click->step#close"
+      button.text-white.bold.text-lg.cursor-pointer type="button" aria-label="閉じる" data-action="click->step#close"
         | ×
-    div.flex-1.relative.aspect-9/16.overflow-hidden
+    div.relative.flex-1.md:flex-initial.md:aspect-16/9.md:max-w-4xl.md:w-full.md:mx-auto.overflow-hidden
       video.w-full.h-full.object-cover.bg-gray-500 data-camera-check-target="video" autoplay playsinline muted
-      div.absolute.inset-x-0.border-b.border-white/50.pointer-events-none style="top: 5%"
-      div.absolute.inset-x-0.border-t.border-white/50.pointer-events-none style="bottom: 5%"
-      div.absolute.left-1/2.border-l.border-white/50.pointer-events-none style="top: 5%; bottom: 5%"
-      div.absolute.border.border-white/60.rounded-sm.pointer-events-none style="top: 10%; left: 10%; right: 10%; bottom: 30%"
-    div.flex.flex-col.items-center.gap-2
+      div.absolute.inset-x-0.border-b.border-white/50.pointer-events-none class="top-[5%]"
+      div.absolute.inset-x-0.border-t.border-white/50.pointer-events-none class="bottom-[5%]"
+      div.absolute.left-1/2.border-l.border-white/50.pointer-events-none class="top-[5%] bottom-[5%]"
+      div.absolute.border.border-white/60.rounded-sm.pointer-events-none class="top-[10%] left-[5%] right-[5%] bottom-[30%] md:top-[10%] md:left-[30%] md:right-[30%] md:bottom-[15%]"
+    div.flex.flex-col.items-center.gap-4
       p.text-white.text-sm 顔をボックスにあてはめてから「次へ」を押してください
-      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items type="button" data-action="click->step#proceedFromCameraCheck" aria-label="次へ" 次へ
+      button.bg-amber-500.hover:bg-amber-600.cursor-pointer.text-white.font-bold.py-2.px-4.rounded.items type="button" data-action="click->step#proceedFromCameraCheck" aria-label="次へ" 次へ
 
   div#guide.fixed.inset-0.z-50.flex.flex-col.p-8.bg-black.hidden data-step-target="guide" data-controller="guide"
     div.flex.justify-end.mr-4.mb-4
-      button.text-white.bold.text-lg type="button" aria-label="閉じる" data-action="click->step#close"
+      button.text-white.bold.text-lg.cursor-pointer type="button" aria-label="閉じる" data-action="click->step#close"
         | ×
     div.flex.flex-col.flex-1.items-center.justify-center.gap-6
-      div.flex.flex-col.text-white.gap-2.border.rounded-md.p-8
+      div.flex.flex-col.text-white.leading-relaxed.gap-4.border.rounded-md.p-8.md:max-w-2xl
         h2.self-center.text-lg.font-bold 面接印象診断のやり方
-        ul.list-disc.pl-5
-          li 「次へ」ボタンを押すと診断画面に切り替わります。
-          li 「診断開始」ボタンを押すと、面接官の動画が流れます。面接官が「自己紹介をしてください」など、最初に1問だけ質問をしますので、面接本番をイメージして質問に答えてください。
-          li 回答時間は1分です。
+        ul
+          li.flex
+            span.text-green-600.mr-1 ✔︎
+            | 「次へ」ボタンを押すと診断画面に切り替わります。
+          li.flex
+            span.text-green-600.mr-1 ✔︎
+            |「診断開始」ボタンを押すと、面接官の動画が流れます。面接官が「自己紹介をしてください」など、最初に1問だけ質問をしますので、面接本番をイメージして質問に答えてください。
+          li.flex
+            span.text-green-600.mr-1 ✔︎
+            | 回答時間は1分です。
       div.flex.gap-2
-        input type="checkbox" id="skip-guide" data-guide-target="checkBox"
-        label.text-white.flex for="skip-guide" 次回からこの説明を表示しない
-      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items type="button" aria-label="次へ" data-action="click->guide#check click->step#show click->step#startCamera" data-step-step-param="diagnosis" 次へ
+        input.cursor-pointer type="checkbox" id="skip-guide" data-guide-target="checkBox"
+        label.text-white.flex.cursor-pointer for="skip-guide" 次回からこの説明を表示しない
+      button.bg-amber-500.hover:bg-amber-600.cursor-pointer.text-white.font-bold.py-2.px-4.rounded.items type="button" aria-label="次へ" data-action="click->guide#check click->step#show click->step#startCamera" data-step-step-param="diagnosis" 次へ
     
 
-  div#diagnosis.fixed.inset-0.z-50.flex.flex-col.gap-2.p-8.bg-black.hidden data-step-target="diagnosis" data-controller="diagnosis"
+  div#diagnosis.fixed.inset-0.z-50.flex.flex-col.gap-2.md:gap-8.p-8.bg-black.hidden data-step-target="diagnosis" data-controller="diagnosis"
     div.flex.justify-end.mr-4.mb-4
-      button.text-white.bold.text-lg type="button" aria-label="閉じる" data-action="click->step#close click->diagnosis#stop"
+      button.text-white.bold.text-lg.cursor-pointer type="button" aria-label="閉じる" data-action="click->step#close click->diagnosis#stop"
         | ×
-    div.relative.flex-1.aspect-9/16.overflow-hidden
+    div.relative.flex-1.md:flex-initial.md:aspect-16/9.md:w-full.md:max-w-4xl.md:mx-auto.overflow-hidden
       video.w-full.h-full.object-cover data-diagnosis-target="interviewVideo" src="/videos/sample.mp4" type="video/mp4"
       div.absolute.inset-0.bg-black/70 data-diagnosis-target="overlay"
-      video.absolute.w-24.bottom-2.right-2.aspect-9/16.object-cover data-diagnosis-target="preview" autoplay playsinline muted
+      video.absolute.w-24.bottom-2.right-2.aspect-9/16.md:aspect-16/9.md:w-64.object-cover data-diagnosis-target="preview" autoplay playsinline muted
       canvas.hidden data-diagnosis-target="canvas"
-    div#feedback.fixed.inset-0.bg-white.flex.flex-col.items-center.gap-2.p-8.hidden data-diagnosis-target="feedback"
-      h2.text-lg.font-bold.text-gray-800 診断結果
+    div#feedback.fixed.inset-0.bg-amber-50.flex.flex-col.items-center.gap-6.p-8.overflow-y-auto.hidden data-diagnosis-target="feedback"
+      h2.text-lg.font-bold 🤖 診断結果
       div.hidden data-diagnosis-target="loader"
         p Loading...
-      div.flex-1.hidden data-diagnosis-target="aiDiagnosis"
-        p.text-gray-800
-      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items type="button" data-diagnosis-target="backToHomeButton" data-action="click->step#show" data-step-step-param="lp" aria-label="トップへ戻る" トップへ戻る
-    div.flex.flex-col.items-center.gap-2
+      div.flex-1.md:max-w-2xl.md:w-full.md:mx-auto data-diagnosis-target="aiDiagnosis"
+        p.text-gray-800.leading-relaxed.hidden 
+      button.bg-amber-500.hover:bg-amber-600.cursor-pointer.text-white.font-bold.py-2.px-4.rounded.items type="button" data-diagnosis-target="backToHomeButton" data-action="click->step#show" data-step-step-param="lp" aria-label="トップへ戻る" トップへ戻る
+    div.flex.flex-col.items-center.gap-4
       p.text-white.text-sm data-diagnosis-target="message" 準備ができたらスタートボタンを押してください。
-      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items.disabled:opacity-20 type="button" data-action="click->diagnosis#start" data-diagnosis-target="startButton" aria-label="スタート" スタート
-      button.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded.items.hidden type="button" data-diagnosis-target="resultButton" data-action="click->diagnosis#showFeedback" aria-label="診断結果を見る" 診断結果を見る
+      button.bg-amber-500.hover:bg-amber-600.cursor-pointer.text-white.font-bold.py-2.px-4.rounded.items.disabled:opacity-20 type="button" data-action="click->diagnosis#start" data-diagnosis-target="startButton" aria-label="スタート" スタート
+      button.bg-amber-500.hover:bg-amber-600.cursor-pointer.text-white.font-bold.py-2.px-4.rounded.items.hidden type="button" data-diagnosis-target="resultButton" data-action="click->diagnosis#showFeedback" aria-label="診断結果を見る" 診断結果を見る
 
 
-footer.text-center.p-2.border-t
-  small.text-xs © 2026 面接スマイルアップ
+footer.text-center.p-2.border-t.border-gray-300.bg-amber-50
+  small.text-xs © 2026 面接スマイルup!
