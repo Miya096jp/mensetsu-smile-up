@@ -1,0 +1,57 @@
+.bg-amber-50.min-h-screen.p-8
+  .max-w-2xl.mx-auto.text-gray-800.flex.flex-col.gap-6
+    h1.text-2xl.font-bold.text-center プライバシーポリシー
+    p.text-sm.text-gray-500.text-center 最終更新日：2026年7月5日
+
+    section.flex.flex-col.gap-2
+      h2.text-lg.font-bold 第1条（目的）
+      p 本プライバシーポリシーは、個人開発の面接印象診断ツール、「面接スマイルup!」（以下「本サービス」といいます。）において、個人情報の取扱いに関する基本的事項を定めるものです。本サービスは、ログイン不要・会員登録不要で利用できるものとします。
+
+    section.flex.flex-col.gap-2
+      h2.text-lg.font-bold 第2条（個人情報の定義）
+      p 本プライバシーポリシーにおいて「個人情報」とは、個人情報保護法に定める「個人情報」をいいます。具体的には、生存する個人に関する情報であって、当該情報に含まれる氏名、生年月日その他の記述等により特定の個人を識別できるもの（他の情報と容易に照合することができ、それにより特定の個人を識別することができることとなるものを含む）を指します。
+
+    section.flex.flex-col.gap-2
+      h2.text-lg.font-bold 第3条（取得する個人情報とその取得方法）
+      p 本サービスでは、ユーザーから直接個人情報を取得することはありません。ユーザーは、1分間の模擬面接を行い、その話す様子をカメラで映します。この際、バックグラウンドで写真が切り抜かれ、AIに送信されます。動画が録画されることはありません。
+
+    section.flex.flex-col.gap-2
+      h2.text-lg.font-bold 第4条（個人情報の利用目的）
+      p 本サービスにおいて、ユーザーから送信された写真は、AIによる面接印象の分析および改善アドバイスの生成のためにのみ利用されます。
+
+    section.flex.flex-col.gap-2
+      h2.text-lg.font-bold 第5条（個人情報の第三者提供）
+      ol.list-decimal.pl-5.flex.flex-col.gap-1
+        li 本サービスでは、ユーザーから送信された写真は、第4条に定める目的のためにのみ利用され、第三者に提供されることはありません。
+        li AIによる分析が完了した後、送信された写真はサーバーにもデバイスにも一切保存されません。
+        li AIが診断した画像も、AIの学習には一切使用されません。
+
+    section.flex.flex-col.gap-2
+      h2.text-lg.font-bold 第6条（個人情報の安全管理措置）
+      p 本サービスは、ユーザーから送信された写真の漏洩、滅失、毀損等を防止するため、技術的な安全管理措置を講じます。具体的には、以下の措置を講じます。
+      ol.list-decimal.pl-5.flex.flex-col.gap-1
+        li 送信された写真は、分析完了後速やかに削除され、保存されません。
+        li AIによる分析プロセスにおいては、必要最小限の情報のみが利用されます。
+
+    section.flex.flex-col.gap-2
+      h2.text-lg.font-bold 第7条（個人情報に関するお問い合わせ窓口）
+      p 本プライバシーポリシーに関するお問い合わせは、以下の窓口までご連絡ください。
+      p.text-gray-600 お問い合わせ先：個人開発者（連絡先は別途指定）
+
+    section.flex.flex-col.gap-2
+      h2.text-lg.font-bold 第8条（本プライバシーポリシーの変更）
+      ol.list-decimal.pl-5.flex.flex-col.gap-1
+        li 本サービスは、法令の改正、その他必要が生じた場合には、本プライバシーポリシーを変更することがあります。
+        li 本プライバシーポリシーの変更は、本サービス上での掲示をもって告知するものとします。
+        li 変更後のプライバシーポリシーは、本サービス上に掲示した時点から効力を生じるものとします。
+
+    section.flex.flex-col.gap-2
+      h2.text-lg.font-bold 第9条（準拠法）
+      p 本プライバシーポリシーの解釈にあたっては、日本法を準拠法とします。
+
+    section.flex.flex-col.gap-2
+      h2.text-lg.font-bold 第10条（管轄裁判所）
+      p 本サービスに関して紛争が生じた場合には、運営者の住所地を管轄する地方裁判所を第一審の専属的合意管轄裁判所とします。
+
+    p.text-center.text-sm.text-gray-500 以上
+    = link_to "トップへ戻る", root_path, class: "text-center underline cursor-pointer text-blue-800 hover:text-blue-300" 
