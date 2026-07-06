@@ -4,6 +4,7 @@ services:
       dockerfile: Dockerfile.dev
     tty: true
     command: bash -c "rm -f tmp/pids/server.pid && bin/dev"
+    env_file: .env
     volumes:
       - .:/rails
       - bundle_cache:/usr/local/bundle
