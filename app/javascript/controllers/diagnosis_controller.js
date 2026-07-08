@@ -163,5 +163,15 @@ export default class extends Controller {
 			"準備ができたらスタートボタンを押してください。";
 		this.overlayTarget.classList.remove("hidden");
 		this.previewTarget.classList.remove("hidden");
+		this.setVideo();
+	}
+
+	setVideo() {
+		const selfIntroduction = "/videos/selfIntroduction.mp4";
+		const applicationReason = "/videos/applicationReason.mp4";
+		const strength = "/videos/strength.mp4";
+		const videos = [selfIntroduction, applicationReason, strength];
+		const index = Math.floor(Math.random() * 3);
+		this.interviewVideoTarget.src = videos[index];
 	}
 }
