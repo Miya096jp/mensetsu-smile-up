@@ -84,8 +84,7 @@ main.flex-1.bg-amber-50 data-controller="step" data-step-camera-check-outlet="#c
       canvas.hidden data-diagnosis-target="canvas"
     div#feedback.fixed.inset-0.bg-amber-50.flex.flex-col.items-center.gap-6.p-8.overflow-y-auto.hidden data-diagnosis-target="feedback"
       h2.text-lg.font-bold 🤖 診断結果
-      div.hidden data-diagnosis-target="loader"
-        p Loading...
+      div.animate-spin.h-8.w-8.border-4.border-4.border-amber-500.border-t-transparent.rounded-full data-diagnosis-target="loader"
       div.flex-1.md:max-w-2xl.md:w-full.md:mx-auto data-diagnosis-target="aiDiagnosis"
         p.text-gray-800.leading-relaxed.hidden 
       button.bg-amber-500.hover:bg-amber-600.cursor-pointer.text-white.font-bold.py-2.px-4.rounded.items type="button" data-diagnosis-target="backToHomeButton" data-action="click->step#show" data-step-step-param="lp" aria-label="トップへ戻る" トップへ戻る
