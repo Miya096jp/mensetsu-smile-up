@@ -111,7 +111,7 @@ export default class extends Controller {
 
 			if (response.ok) {
 				const data = await response.json();
-				this.aiDiagnosisTarget.textContent = data.content.text;
+				this.aiDiagnosisTarget.textContent = data.content;
 			} else {
 				const data = await response.json();
 				this.aiDiagnosisTarget.textContent = data.message;
