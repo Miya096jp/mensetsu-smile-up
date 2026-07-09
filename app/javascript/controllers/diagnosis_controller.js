@@ -66,8 +66,8 @@ export default class extends Controller {
 	}
 
 	async capture() {
-		const dataURL = await this.captureFrame();
-		this.capturedPhotos.push(dataURL);
+		const blob = await this.captureFrame();
+		this.capturedPhotos.push(blob);
 		this.capturedCount++;
 	}
 
@@ -93,8 +93,8 @@ export default class extends Controller {
 
 	async fetch() {
 		const formData = new FormData();
-		this.capturedPhotos.forEach((dataUrl) => {
-			formData.append("photos[]", dataUrl);
+		this.capturedPhotos.forEach((blob) => {
+			formData.append("photos[]", blob);
 		});
 
 		try {
