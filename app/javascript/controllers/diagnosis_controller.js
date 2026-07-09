@@ -126,7 +126,7 @@ export default class extends Controller {
 	async stop() {
 		try {
 			await this.interviewVideoTarget.pause();
-			this.interviewVideoTarget.currentTime = 1;
+			this.interviewVideoTarget.currentTime = 0;
 		} catch (e) {
 			console.warn("Interview video not available", e.message);
 		}
