@@ -66,8 +66,8 @@ export default class extends Controller {
 	}
 
 	async capture() {
-		const dataURL = await this.captureFrame();
-		this.capturedPhotos.push(dataURL);
+		const blob = await this.captureFrame();
+		this.capturedPhotos.push(blob);
 		this.capturedCount++;
 	}
 
@@ -93,8 +93,8 @@ export default class extends Controller {
 
 	async fetch() {
 		const formData = new FormData();
-		this.capturedPhotos.forEach((dataUrl) => {
-			formData.append("photos[]", dataUrl);
+		this.capturedPhotos.forEach((blob) => {
+			formData.append("photos[]", blob);
 		});
 
 		try {
@@ -111,7 +111,7 @@ export default class extends Controller {
 
 			if (response.ok) {
 				const data = await response.json();
-				this.aiDiagnosisTarget.textContent = data.content.text;
+				this.aiDiagnosisTarget.textContent = data.content;
 			} else {
 				const data = await response.json();
 				this.aiDiagnosisTarget.textContent = data.message;
@@ -126,7 +126,7 @@ export default class extends Controller {
 	async stop() {
 		try {
 			await this.interviewVideoTarget.pause();
-			this.interviewVideoTarget.currentTime = 1;
+			this.interviewVideoTarget.currentTime = 0;
 		} catch (e) {
 			console.warn("Interview video not available", e.message);
 		}
