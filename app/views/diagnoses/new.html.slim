@@ -128,7 +128,7 @@ main.flex-1.bg-stone-50 data-controller="step" data-step-camera-check-outlet="#c
           path d="M18 6 6 18M6 6l12 12"
         span.text-sm.font-semibold 診断をやめる
     div.relative.flex-1.md:flex-initial.md:aspect-16/9.md:max-w-4xl.md:w-full.md:mx-auto.overflow-hidden
-      video.w-full.h-full.object-cover.bg-gray-500 data-camera-check-target="video" autoplay playsinline muted
+      video.w-full.h-full.object-cover.bg-gray-500 class="-scale-x-100" data-camera-check-target="video" autoplay playsinline muted
       div.absolute.inset-x-0.border-b.border-white/50.pointer-events-none class="top-[5%]"
       div.absolute.inset-x-0.border-t.border-white/50.pointer-events-none class="bottom-[5%]"
       div.absolute.left-1/2.border-l.border-white/50.pointer-events-none class="top-[5%] bottom-[5%]"
@@ -188,20 +188,21 @@ main.flex-1.bg-stone-50 data-controller="step" data-step-camera-check-outlet="#c
     div.relative.flex-1.md:flex-initial.md:aspect-16/9.md:w-full.md:max-w-4xl.md:mx-auto.overflow-hidden
       video.w-full.h-full.object-cover data-diagnosis-target="interviewVideo" type="video/mp4"
       div.absolute.inset-0.bg-stone-900/70 data-diagnosis-target="overlay"
-      video.absolute.w-24.bottom-2.right-2.aspect-9/16.md:aspect-16/9.md:w-64.object-cover data-diagnosis-target="preview" autoplay playsinline muted
+      video.absolute.w-24.bottom-2.right-2.aspect-9/16.md:aspect-16/9.md:w-64.object-cover class="-scale-x-100" data-diagnosis-target="preview" autoplay playsinline muted
       canvas.hidden data-diagnosis-target="canvas"
-    div#feedback.fixed.inset-0.bg-stone-50.flex.flex-col.items-center.gap-6.p-8.overflow-y-auto.hidden data-diagnosis-target="feedback"
-      div.flex.items-center.gap-2
-        svg.w-8.h-8 viewBox="0 0 48 48" fill="none" aria-hidden="true"
-          circle cx="24" cy="24" r="20" stroke="#F59E0B" stroke-width="3.4"
-          circle cx="17" cy="20.5" r="2.3" fill="#1E293B"
-          circle cx="31" cy="20.5" r="2.3" fill="#1E293B"
-          path d="M15.5 27.5 Q24 35.5 32.5 27.5" stroke="#F59E0B" stroke-width="3.4" stroke-linecap="round" fill="none"
-        h2.text-xl.font-bold.text-stone-900 診断結果
-      div.animate-spin.h-8.w-8.border-4.border-amber-500.border-t-transparent.rounded-full data-diagnosis-target="loader"
-      div.flex-1.md:max-w-2xl.md:w-full.md:mx-auto data-diagnosis-target="aiDiagnosis"
-        p.text-stone-700.leading-relaxed.hidden
-      button.bg-amber-600.hover:bg-amber-700.transition-colors.cursor-pointer.text-white.font-bold.py-3.px-8.rounded-xl type="button" data-diagnosis-target="backToHomeButton" data-action="click->step#show" data-step-step-param="lp" aria-label="トップへ戻る" トップへ戻る
+    div#feedback.fixed.inset-0.bg-stone-50.flex.flex-col.items-center.gap-6.p-6.md:p-10.overflow-y-auto.hidden data-diagnosis-target="feedback"
+      div.flex.flex-col.items-center.gap-1.shrink-0.pt-2
+        div.flex.items-center.gap-2
+          svg.w-8.h-8 viewBox="0 0 48 48" fill="none" aria-hidden="true"
+            circle cx="24" cy="24" r="20" stroke="#F59E0B" stroke-width="3.4"
+            circle cx="17" cy="20.5" r="2.3" fill="#1E293B"
+            circle cx="31" cy="20.5" r="2.3" fill="#1E293B"
+            path d="M15.5 27.5 Q24 35.5 32.5 27.5" stroke="#F59E0B" stroke-width="3.4" stroke-linecap="round" fill="none"
+          h2.text-xl.font-bold.text-stone-900 診断結果
+        p.text-xs.text-stone-400 AIによる面接印象のフィードバック
+      div.animate-spin.h-8.w-8.border-4.border-amber-500.border-t-transparent.rounded-full.shrink-0 data-diagnosis-target="loader"
+      div.w-full.max-w-2xl.mx-auto.bg-white.border.border-stone-200.rounded-2xl.p-6.md:p-8.text-stone-700.text-left.hidden class="leading-[1.9] whitespace-pre-wrap" data-diagnosis-target="aiDiagnosis"
+      button.bg-amber-600.hover:bg-amber-700.transition-colors.cursor-pointer.text-white.font-bold.py-3.px-8.rounded-xl.shrink-0.mb-2 type="button" data-diagnosis-target="backToHomeButton" data-action="click->step#show" data-step-step-param="lp" aria-label="トップへ戻る" トップへ戻る
     div.flex.flex-col.items-center.gap-4
       p.text-white.text-sm data-diagnosis-target="message" 準備ができたらスタートボタンを押してください。
       button.bg-amber-600.hover:bg-amber-700.transition-colors.cursor-pointer.text-white.font-bold.py-3.px-8.rounded-xl.disabled:opacity-20 type="button" data-action="click->diagnosis#start" data-diagnosis-target="startButton" aria-label="スタート" スタート
