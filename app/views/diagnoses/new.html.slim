@@ -1,6 +1,6 @@
 header.bg-white.border-b.border-stone-200
   div.max-w-5xl.mx-auto.px-6.py-4.flex.flex-col.items-center.gap-1
-    h1.flex.items-center.gap-2.5 aria-label="面接スマイルup!"
+    h1.flex.items-center.gap-2 aria-label="面接スマイルup!"
       svg.h-10.w-10.md:h-11.md:w-11.shrink-0 viewBox="0 0 48 48" fill="none" aria-hidden="true"
         circle cx="24" cy="24" r="20" stroke="#F59E0B" stroke-width="3.4"
         circle cx="17" cy="20.5" r="2.3" fill="#1E293B"
@@ -28,21 +28,23 @@ main.flex-1.bg-stone-50 data-controller="step" data-step-camera-check-outlet="#c
               p.text-sm.text-stone-500.break-keep.text-center.md:text-left
                 span.text-amber-700.font-semibold 登録不要
                 |  ・ 個人情報なし ・ 完全無料
-              p.text-xs.text-stone-400.flex.items-center.justify-center.gap-1.5.md:justify-start.break-keep.max-w-xs
+              p.text-xs.text-stone-400.flex.items-center.justify-center.gap-2.md:justify-start.break-keep.max-w-xs
                 svg.w-4.h-4.shrink-0 width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
                   path d="M23 7l-7 5 7 5V7z"
                   rect x="1" y="5" width="15" height="14" rx="2"
-                span 診断にカメラを使用します。<wbr>撮影した映像はサーバーに送信されません。
+                span
+                  | 診断にカメラを使用します。<wbr>
+                  span.font-semibold.text-stone-600 撮影した映像はサーバーに送信されません。
         div.w-full.max-w-sm.mx-auto.md:max-w-none
-          div.relative.rounded-3xl.overflow-hidden.border.border-stone-200 class="aspect-[3/4] shadow-2xl shadow-stone-900/20"
-            = image_tag "interviewer.jpg", alt: "診断中に流れる面接官の映像", class: "absolute inset-0 w-full h-full object-cover"
+          div.relative.rounded-3xl.overflow-hidden.border.border-stone-200 class="aspect-square shadow-2xl shadow-stone-900/20"
+            = image_tag "interviewer.webp", alt: "診断中に登場する面接官のイメージ", class: "absolute inset-0 w-full h-full object-cover object-top"
             div.absolute.inset-x-0.top-0.h-20 class="bg-gradient-to-b from-black/40 to-transparent pointer-events-none"
             div.absolute.top-3.left-3.flex.items-center.gap-1.rounded-full.px-3.py-1 class="bg-black/45 backdrop-blur-sm"
               span.w-2.h-2.rounded-full.bg-red-500 class="animate-pulse"
               span.text-white.text-xs.font-semibold 面接中
-            div.absolute.top-3.right-3.rounded-xl.overflow-hidden.border class="w-[28%] aspect-[3/4] bg-stone-800 border-white/70"
-              svg.absolute.inset-0.w-full.h-full viewBox="0 0 60 80" fill="none" aria-hidden="true"
-                ellipse cx="30" cy="33" rx="16" ry="20" stroke="#ffffff" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="4 4"
+            div.absolute.top-3.right-3.rounded-xl.overflow-hidden.border class="w-[28%] aspect-[3/4] border-white/70"
+              = image_tag "user.webp", alt: "あなたのカメラ映像イメージ", class: "absolute inset-0 w-full h-full object-cover"
+              div.absolute.inset-x-0.bottom-0.h-7 class="bg-gradient-to-t from-black/55 to-transparent pointer-events-none"
               span.absolute.left-0.right-0.bottom-1.text-center.text-white.font-semibold class="text-[10px]" あなた
             div.absolute.inset-x-0.bottom-0.p-3
               div.flex.gap-2.items-start.rounded-2xl.p-3 class="bg-white/95 backdrop-blur shadow-lg"
@@ -61,7 +63,7 @@ main.flex-1.bg-stone-50 data-controller="step" data-step-camera-check-outlet="#c
         div.flex.flex-col.items-center.gap-3.text-center
           h3.text-2xl.md:text-3xl.font-bold.text-stone-900 登録も、時間も、いらない。
           p.text-base.md:text-lg.text-stone-600.leading-relaxed.max-w-xl.break-keep
-            | 「自信が持てない。<wbr>でも対策は<wbr>時間も気持ちも重い」<wbr>——そんな方のための、<wbr>いちばん軽い<wbr>面接対策です。
+            | 「自信が持てない。<wbr>でも対策は<wbr>時間も気持ちも重い」<wbr>そんな方のための、<wbr>いちばん軽い<wbr>面接対策です。
         div.grid.gap-4.w-full.md:grid-cols-3
           div.bg-white.border.border-stone-200.rounded-2xl.p-6.md:p-8.flex.items-center.gap-5.md:flex-col.md:text-center.md:gap-4
             div.shrink-0.w-14.h-14.rounded-2xl.bg-amber-50.flex.items-center.justify-center
