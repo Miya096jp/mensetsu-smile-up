@@ -1,106 +1,221 @@
-header.bg-amber-50
-  div.p-8.flex.flex-col.items-center.gap-2.border-b.border-gray-300.text-gray-800
-    h1
-      = image_tag "logo.png", alt: "面接スマイルup!", class: "h-32"
-    p.text-sm 面接スマイルup!は、気軽にサクッと使える面接印象改善アプリです。
+header.bg-white.border-b.border-stone-200
+  div.max-w-5xl.mx-auto.px-6.py-4.flex.flex-col.items-center.gap-1
+    h1.flex.items-center.gap-2 aria-label="面接スマイルup!"
+      svg.h-10.w-10.md:h-11.md:w-11.shrink-0 viewBox="0 0 48 48" fill="none" aria-hidden="true"
+        circle cx="24" cy="24" r="20" stroke="#F59E0B" stroke-width="3.4"
+        circle cx="17" cy="20.5" r="2.3" fill="#1E293B"
+        circle cx="31" cy="20.5" r="2.3" fill="#1E293B"
+        path d="M15.5 27.5 Q24 35.5 32.5 27.5" stroke="#F59E0B" stroke-width="3.4" stroke-linecap="round" fill="none"
+      span.text-xl.md:text-2xl.font-bold.text-stone-900.tracking-wide
+        | 面接スマイル
+        span.text-amber-600.italic up!
+    p.text-xs.text-stone-500.text-center.break-keep 就活・転職の面接対策を、<wbr>登録不要・1分で。
 
-main.flex-1.bg-amber-50 data-controller="step" data-step-camera-check-outlet="#camera-check" data-step-diagnosis-outlet="#diagnosis"
-  div#lp.p-8 data-step-target="lp"
-    div.flex.flex-col.gap-8.text-gray-800.md:max-w-2xl.md:mx-auto
-      section.flex.flex-col.items-center.gap-2
-        h2.font-bold.text-lg 🔑 ユーザー登録不要
-        p 個人情報の登録なしでサクッと使えます。
+main.flex-1.bg-stone-50 data-controller="step" data-step-camera-check-outlet="#camera-check" data-step-diagnosis-outlet="#diagnosis"
+  div#lp data-step-target="lp"
+    div.max-w-5xl.mx-auto.px-6.py-14.md:py-20.flex.flex-col.gap-16.md:gap-24.text-stone-800
+      section.grid.gap-12.md:grid-cols-2.md:gap-14.md:items-center
+        div.flex.flex-col.items-center.text-center.gap-6.md:items-start.md:text-left
+          h2.text-4xl.md:text-5xl.font-bold.text-stone-900 class="leading-[3.25rem] md:leading-[3.9rem]"
+            | 面接の第一印象に、
+            br
+            | 自信を。
+          p.text-lg.md:text-xl.text-stone-600.leading-relaxed.max-w-xl.break-keep
+            | 表情と姿勢の印象を<wbr>AIが診断し、<wbr>改善アドバイスを<wbr>その場でお届け。<wbr>就活・転職の<wbr>面接対策を、<wbr>登録不要・<wbr>たった1分で。
+          div.flex.flex-col.items-center.gap-3.w-full.pt-2.md:items-start
+            button type="button" data-action="click->step#show click->step#startCamera" data-step-step-param="cameraCheck" aria-label="診断開始" class="bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition-colors cursor-pointer text-white text-lg font-bold py-4 px-12 rounded-xl shadow-lg shadow-amber-600/30 w-full max-w-sm md:w-auto" 診断を始める
+            div.flex.flex-col.gap-1.5.w-full.max-w-sm.md:w-auto
+              p.text-sm.text-stone-500.break-keep.text-center.md:text-left
+                span.text-amber-700.font-semibold 登録不要
+                |  ・ 個人情報なし ・ 完全無料
+              p.text-xs.text-stone-400.flex.items-center.justify-center.gap-2.md:justify-start.break-keep.max-w-xs
+                svg.w-4.h-4.shrink-0 width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                  path d="M23 7l-7 5 7 5V7z"
+                  rect x="1" y="5" width="15" height="14" rx="2"
+                span
+                  | 診断にカメラを使用します。<wbr>
+                  span.font-semibold.text-stone-600 撮影した映像はサーバーに送信されません。
+        div.w-full.max-w-sm.mx-auto.md:max-w-none
+          div.relative.rounded-3xl.overflow-hidden.border.border-stone-200 class="aspect-square shadow-2xl shadow-stone-900/20"
+            = image_tag "interviewer.webp", alt: "診断中に登場する面接官のイメージ", class: "absolute inset-0 w-full h-full object-cover object-top"
+            div.absolute.inset-x-0.top-0.h-20 class="bg-gradient-to-b from-black/40 to-transparent pointer-events-none"
+            div.absolute.top-3.left-3.flex.items-center.gap-1.rounded-full.px-3.py-1 class="bg-black/45 backdrop-blur-sm"
+              span.w-2.h-2.rounded-full.bg-red-500 class="animate-pulse"
+              span.text-white.text-xs.font-semibold 面接中
+            div.absolute.top-3.right-3.rounded-xl.overflow-hidden.border class="w-[28%] aspect-[3/4] border-white/70"
+              = image_tag "user.webp", alt: "あなたのカメラ映像イメージ", class: "absolute inset-0 w-full h-full object-cover"
+              div.absolute.inset-x-0.bottom-0.h-7 class="bg-gradient-to-t from-black/55 to-transparent pointer-events-none"
+              span.absolute.left-0.right-0.bottom-1.text-center.text-white.font-semibold class="text-[10px]" あなた
+            div.absolute.inset-x-0.bottom-0.p-3
+              div.flex.gap-2.items-start.rounded-2xl.p-3 class="bg-white/95 backdrop-blur shadow-lg"
+                span.shrink-0.w-8.h-8.rounded-full.bg-amber-50.flex.items-center.justify-center
+                  svg.w-5.h-5 viewBox="0 0 48 48" fill="none" aria-hidden="true"
+                    circle cx="24" cy="24" r="20" stroke="#F59E0B" stroke-width="3.8"
+                    circle cx="17" cy="20.5" r="2.6" fill="#1E293B"
+                    circle cx="31" cy="20.5" r="2.6" fill="#1E293B"
+                    path d="M15.5 27.5 Q24 35.5 32.5 27.5" stroke="#F59E0B" stroke-width="3.8" stroke-linecap="round" fill="none"
+                div.flex.flex-col
+                  span.text-amber-700.font-bold class="text-[11px]" AIアドバイス
+                  p.text-xs.text-stone-700.leading-relaxed.break-keep 口角が自然に上がり好印象です。<wbr>次は目線をまっすぐ向けてみましょう。
+          p.mt-2.text-center.text-xs.text-stone-400 実際の診断画面のイメージ
 
-      section.flex.flex-col.items-center.gap-2
-        h2.font-bold.text-lg ⏱️ 1分で診断
-        p 面接官の質問に1分間答えるだけでOKです。
+      section.flex.flex-col.items-center.gap-10
+        div.flex.flex-col.items-center.gap-3.text-center
+          h3.text-2xl.md:text-3xl.font-bold.text-stone-900 登録も、時間も、いらない。
+          p.text-base.md:text-lg.text-stone-600.leading-relaxed.max-w-xl.break-keep
+            | 「自信が持てない。<wbr>でも対策は<wbr>時間も気持ちも重い」<wbr>そんな方のための、<wbr>いちばん軽い<wbr>面接対策です。
+        div.grid.gap-4.w-full.md:grid-cols-3
+          div.bg-white.border.border-stone-200.rounded-2xl.p-6.md:p-8.flex.items-center.gap-5.md:flex-col.md:text-center.md:gap-4
+            div.shrink-0.w-14.h-14.rounded-2xl.bg-amber-50.flex.items-center.justify-center
+              svg.w-7.h-7 viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"
+            div.flex.flex-col.gap-1.5
+              h4.text-lg.font-bold.text-stone-900 登録不要
+              p.text-base.text-stone-600.leading-relaxed.break-keep 個人情報の登録なしで、<wbr>今すぐ始められます。
+          div.bg-white.border.border-stone-200.rounded-2xl.p-6.md:p-8.flex.items-center.gap-5.md:flex-col.md:text-center.md:gap-4
+            div.shrink-0.w-14.h-14.rounded-2xl.bg-amber-50.flex.items-center.justify-center
+              svg.w-7.h-7 viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                circle cx="12" cy="13" r="8"
+                path d="M12 9v4l2.5 1.5"
+                path d="M9 2h6"
+            div.flex.flex-col.gap-1.5
+              h4.text-lg.font-bold.text-stone-900 1分で診断
+              p.text-base.text-stone-600.leading-relaxed.break-keep 面接官の質問に<wbr>1分間答えるだけでOK。
+          div.bg-white.border.border-stone-200.rounded-2xl.p-6.md:p-8.flex.items-center.gap-5.md:flex-col.md:text-center.md:gap-4
+            div.shrink-0.w-14.h-14.rounded-2xl.bg-amber-50.flex.items-center.justify-center
+              svg.w-7.h-7 viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"
+                path d="m8.5 9.5 2 2 4-4"
+            div.flex.flex-col.gap-1.5
+              h4.text-lg.font-bold.text-stone-900 即アドバイス
+              p.text-base.text-stone-600.leading-relaxed.break-keep 表情・姿勢の<wbr>印象診断と<wbr>改善案をその場で。
 
-      section.flex.flex-col.items-center.gap-2
-        h2.font-bold.text-lg 📩 結果を即GET
-        p 印象診断と、改善アドバイスを即GETできます。
-
-      section.flex.flex-col.gap-2
-        h2.font-bold.text-lg.text-center 🔒 プライバシーも安心
-        ul.flex.flex-col.gap-2.text-sm.max-w-md.mx-auto.md:text-base
-          li.flex 
-            span.text-green-600.mr-1 ✔︎
+      section.bg-stone-100.border.border-stone-200.rounded-2xl.px-6.py-7.md:px-10.md:py-9.flex.flex-col.gap-5.max-w-3xl.w-full.mx-auto
+        div.flex.items-center.justify-center.gap-2
+          svg.w-5.h-5.text-stone-500 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+            rect x="4" y="10" width="16" height="11" rx="2"
+            path d="M8 10V7a4 4 0 0 1 8 0v3"
+          h3.text-lg.font-bold.text-stone-700 プライバシーへの配慮
+        ul.flex.flex-col.gap-4.text-base.text-stone-600.leading-relaxed
+          li.flex.gap-3
+            svg.w-5.h-5.shrink-0.text-amber-600.mt-0.5 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+              path d="M20 6 9 17l-5-5"
             | 撮影した動画から切り出した写真をAIに送信し、印象分析に使用します。
-          li.flex 
-            span.text-green-600.mr-1 ✔︎
+          li.flex.gap-3
+            svg.w-5.h-5.shrink-0.text-amber-600.mt-0.5 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+              path d="M20 6 9 17l-5-5"
             | 送信された写真はAIの学習には使用されません。
-          li.flex
-            span.text-green-600.mr-1 ✔︎
-            | 撮影した動画はお使いのPC/スマホに一時的に保存され、サーバーには送信されません。また、動画はページを離れるときに自動で消去されます。
+          li.flex.gap-3
+            svg.w-5.h-5.shrink-0.text-amber-600.mt-0.5 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+              path d="M20 6 9 17l-5-5"
+            | 撮影した動画はお使いのPC/スマホに一時的に保存され、サーバーには送信されません。ページを離れるときに自動で消去されます。
 
-      section.flex.flex-col.items-center.gap-4.py-4
-        p.text-sm ボタンを押すとすぐに診断が開始されます。
-        button.bg-amber-500.hover:bg-amber-600.cursor-pointer.text-gray-50.text-2xl.font-bold.py-2.px-6.rounded type="button" data-action="click->step#show click->step#startCamera" data-step-step-param="cameraCheck" aria-label="診断開始" 診断開始
+      section.flex.flex-col.items-center.gap-5.text-center
+        h3.text-2xl.md:text-3xl.font-bold.text-stone-900.break-keep 準備はいりません。<wbr>今すぐ試せます。
+        button type="button" data-action="click->step#show click->step#startCamera" data-step-step-param="cameraCheck" aria-label="診断開始" class="bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition-colors cursor-pointer text-white text-lg font-bold py-4 px-12 rounded-xl shadow-lg shadow-amber-600/30 w-full max-w-sm" 無料で診断してみる
 
-  div#camera-check.fixed.inset-0.z-50.flex.flex-col.gap-2.md:gap-8.p-8.bg-black.hidden data-step-target="cameraCheck" data-controller="camera-check"
-    div.flex.justify-end.mr-4
-      button.text-white.bold.text-lg.cursor-pointer type="button" aria-label="閉じる" data-action="click->step#close"
-        | ×
+  div#camera-check.fixed.inset-0.z-50.flex.flex-col.gap-2.md:gap-8.p-8.bg-stone-900.hidden data-step-target="cameraCheck" data-controller="camera-check"
+    div.flex.items-center.justify-between.mb-2
+      div.flex.items-center.gap-2
+        svg.w-6.h-6.shrink-0 viewBox="0 0 48 48" fill="none" aria-hidden="true"
+          circle cx="24" cy="24" r="20" stroke="#FBBF24" stroke-width="3.4"
+          circle cx="17" cy="20.5" r="2.3" fill="#ffffff"
+          circle cx="31" cy="20.5" r="2.3" fill="#ffffff"
+          path d="M15.5 27.5 Q24 35.5 32.5 27.5" stroke="#FBBF24" stroke-width="3.4" stroke-linecap="round" fill="none"
+        span.text-white.font-bold 面接印象診断
+      button.shrink-0.flex.items-center.gap-1.rounded-full.px-3.py-1.text-white.cursor-pointer class="bg-white/10 hover:bg-white/20 transition-colors" type="button" aria-label="診断をやめる" data-action="click->step#close"
+        svg.w-4.h-4 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+          path d="M18 6 6 18M6 6l12 12"
+        span.text-sm.font-semibold 診断をやめる
     div.relative.flex-1.md:flex-initial.md:aspect-16/9.md:max-w-4xl.md:w-full.md:mx-auto.overflow-hidden
-      video.w-full.h-full.object-cover.bg-gray-500 data-camera-check-target="video" autoplay playsinline muted
+      video.w-full.h-full.object-cover.bg-gray-500 class="-scale-x-100" data-camera-check-target="video" autoplay playsinline muted
       div.absolute.inset-x-0.border-b.border-white/50.pointer-events-none class="top-[5%]"
       div.absolute.inset-x-0.border-t.border-white/50.pointer-events-none class="bottom-[5%]"
       div.absolute.left-1/2.border-l.border-white/50.pointer-events-none class="top-[5%] bottom-[5%]"
       div.absolute.border.border-white/60.rounded-sm.pointer-events-none class="top-[10%] left-[5%] right-[5%] bottom-[30%] md:top-[10%] md:left-[30%] md:right-[30%] md:bottom-[15%]"
     div.flex.flex-col.items-center.gap-4
       p.text-white.text-sm 顔をボックスにあてはめてから「次へ」を押してください
-      button.bg-amber-500.hover:bg-amber-600.cursor-pointer.text-white.font-bold.py-2.px-4.rounded.items type="button" data-action="click->step#proceedFromCameraCheck" aria-label="次へ" 次へ
+      button.bg-amber-600.hover:bg-amber-700.transition-colors.cursor-pointer.text-white.font-bold.py-3.px-8.rounded-xl type="button" data-action="click->step#proceedFromCameraCheck" aria-label="次へ" 次へ
 
-  div#guide.fixed.inset-0.z-50.flex.flex-col.p-8.bg-black.hidden data-step-target="guide" data-controller="guide"
-    div.flex.justify-end.mr-4.mb-4
-      button.text-white.bold.text-lg.cursor-pointer type="button" aria-label="閉じる" data-action="click->step#close"
-        | ×
+  div#guide.fixed.inset-0.z-50.flex.flex-col.p-8.bg-stone-900.hidden data-step-target="guide" data-controller="guide"
+    div.flex.items-center.justify-between.mb-4
+      div.flex.items-center.gap-2
+        svg.w-6.h-6.shrink-0 viewBox="0 0 48 48" fill="none" aria-hidden="true"
+          circle cx="24" cy="24" r="20" stroke="#FBBF24" stroke-width="3.4"
+          circle cx="17" cy="20.5" r="2.3" fill="#ffffff"
+          circle cx="31" cy="20.5" r="2.3" fill="#ffffff"
+          path d="M15.5 27.5 Q24 35.5 32.5 27.5" stroke="#FBBF24" stroke-width="3.4" stroke-linecap="round" fill="none"
+        span.text-white.font-bold 面接印象診断
+      button.shrink-0.flex.items-center.gap-1.rounded-full.px-3.py-1.text-white.cursor-pointer class="bg-white/10 hover:bg-white/20 transition-colors" type="button" aria-label="診断をやめる" data-action="click->step#close"
+        svg.w-4.h-4 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+          path d="M18 6 6 18M6 6l12 12"
+        span.text-sm.font-semibold 診断をやめる
     div.flex.flex-col.flex-1.items-center.justify-center.gap-6
-      div.flex.flex-col.text-white.leading-relaxed.gap-4.border.rounded-md.p-8.md:max-w-2xl
-        h2.self-center.text-lg.font-bold 面接印象診断のやり方
+      div.flex.flex-col.text-white.leading-relaxed.gap-4.border.border-stone-700.rounded-2xl.p-8.md:max-w-2xl
+        h2.self-center.text-xl.font-bold 面接印象診断のやり方
         ul
-          li.flex
-            span.text-green-600.mr-1 ✔︎
+          li.flex.gap-2
+            svg.w-5.h-5.shrink-0.text-amber-500.mt-px viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+              path d="M20 6 9 17l-5-5"
             | 「次へ」ボタンを押すと診断画面に切り替わります。
-          li.flex
-            span.text-green-600.mr-1 ✔︎
+          li.flex.gap-2
+            svg.w-5.h-5.shrink-0.text-amber-500.mt-px viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+              path d="M20 6 9 17l-5-5"
             |「診断開始」ボタンを押すと、面接官の動画が流れます。面接官が「自己紹介をしてください」など、最初に1問だけ質問をしますので、面接本番をイメージして質問に答えてください。
-          li.flex
-            span.text-green-600.mr-1 ✔︎
+          li.flex.gap-2
+            svg.w-5.h-5.shrink-0.text-amber-500.mt-px viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+              path d="M20 6 9 17l-5-5"
             | 回答時間は1分です。
       div.flex.gap-2
         input.cursor-pointer type="checkbox" id="skip-guide" data-guide-target="checkBox"
         label.text-white.flex.cursor-pointer for="skip-guide" 次回からこの説明を表示しない
-      button.bg-amber-500.hover:bg-amber-600.cursor-pointer.text-white.font-bold.py-2.px-4.rounded.items type="button" aria-label="次へ" data-action="click->guide#check click->step#show click->step#startCamera" data-step-step-param="diagnosis" 次へ
-    
+      button.bg-amber-600.hover:bg-amber-700.transition-colors.cursor-pointer.text-white.font-bold.py-3.px-8.rounded-xl type="button" aria-label="次へ" data-action="click->guide#check click->step#show click->step#startCamera" data-step-step-param="diagnosis" 次へ
 
-  div#diagnosis.fixed.inset-0.z-50.flex.flex-col.gap-2.md:gap-8.p-8.bg-black.hidden data-step-target="diagnosis" data-controller="diagnosis"
-    div.flex.justify-end.mr-4.mb-4
-      button.text-white.bold.text-lg.cursor-pointer type="button" aria-label="閉じる" data-action="click->step#close click->diagnosis#stop"
-        | ×
+
+  div#diagnosis.fixed.inset-0.z-50.flex.flex-col.gap-2.md:gap-8.p-8.bg-stone-900.hidden data-step-target="diagnosis" data-controller="diagnosis"
+    div.flex.items-center.justify-between.mb-4
+      div.flex.items-center.gap-2
+        svg.w-6.h-6.shrink-0 viewBox="0 0 48 48" fill="none" aria-hidden="true"
+          circle cx="24" cy="24" r="20" stroke="#FBBF24" stroke-width="3.4"
+          circle cx="17" cy="20.5" r="2.3" fill="#ffffff"
+          circle cx="31" cy="20.5" r="2.3" fill="#ffffff"
+          path d="M15.5 27.5 Q24 35.5 32.5 27.5" stroke="#FBBF24" stroke-width="3.4" stroke-linecap="round" fill="none"
+        span.text-white.font-bold 面接印象診断
+      button.shrink-0.flex.items-center.gap-1.rounded-full.px-3.py-1.text-white.cursor-pointer class="bg-white/10 hover:bg-white/20 transition-colors" type="button" aria-label="診断をやめる" data-action="click->step#close click->diagnosis#stop"
+        svg.w-4.h-4 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+          path d="M18 6 6 18M6 6l12 12"
+        span.text-sm.font-semibold 診断をやめる
     div.relative.flex-1.md:flex-initial.md:aspect-16/9.md:w-full.md:max-w-4xl.md:mx-auto.overflow-hidden
       video.w-full.h-full.object-cover data-diagnosis-target="interviewVideo" type="video/mp4"
-      div.absolute.inset-0.bg-black/70 data-diagnosis-target="overlay"
-      video.absolute.w-24.bottom-2.right-2.aspect-9/16.md:aspect-16/9.md:w-64.object-cover data-diagnosis-target="preview" autoplay playsinline muted
+      div.absolute.inset-0.bg-stone-900/70 data-diagnosis-target="overlay"
+      video.absolute.w-24.bottom-2.right-2.aspect-9/16.md:aspect-16/9.md:w-64.object-cover class="-scale-x-100" data-diagnosis-target="preview" autoplay playsinline muted
       canvas.hidden data-diagnosis-target="canvas"
-    div#feedback.fixed.inset-0.bg-amber-50.flex.flex-col.items-center.gap-6.p-8.overflow-y-auto.hidden data-diagnosis-target="feedback"
-      h2.text-lg.font-bold 🤖 診断結果
-      div.animate-spin.h-8.w-8.border-4.border-4.border-amber-500.border-t-transparent.rounded-full data-diagnosis-target="loader"
-      div.flex-1.md:max-w-2xl.md:w-full.md:mx-auto data-diagnosis-target="aiDiagnosis"
-        p.text-gray-800.leading-relaxed.hidden 
-      button.bg-amber-500.hover:bg-amber-600.cursor-pointer.text-white.font-bold.py-2.px-4.rounded.items type="button" data-diagnosis-target="backToHomeButton" data-action="click->step#show" data-step-step-param="lp" aria-label="トップへ戻る" トップへ戻る
+    div#feedback.fixed.inset-0.bg-stone-50.flex.flex-col.items-center.gap-6.p-6.md:p-10.overflow-y-auto.hidden data-diagnosis-target="feedback"
+      div.flex.flex-col.items-center.gap-1.shrink-0.pt-2
+        div.flex.items-center.gap-2
+          svg.w-8.h-8 viewBox="0 0 48 48" fill="none" aria-hidden="true"
+            circle cx="24" cy="24" r="20" stroke="#F59E0B" stroke-width="3.4"
+            circle cx="17" cy="20.5" r="2.3" fill="#1E293B"
+            circle cx="31" cy="20.5" r="2.3" fill="#1E293B"
+            path d="M15.5 27.5 Q24 35.5 32.5 27.5" stroke="#F59E0B" stroke-width="3.4" stroke-linecap="round" fill="none"
+          h2.text-xl.font-bold.text-stone-900 診断結果
+        p.text-xs.text-stone-400 AIによる面接印象のフィードバック
+      div.animate-spin.h-8.w-8.border-4.border-amber-500.border-t-transparent.rounded-full.shrink-0 data-diagnosis-target="loader"
+      div.w-full.max-w-2xl.mx-auto.bg-white.border.border-stone-200.rounded-2xl.p-6.md:p-8.text-stone-700.text-left.hidden class="leading-[1.9] whitespace-pre-wrap" data-diagnosis-target="aiDiagnosis"
+      button.bg-amber-600.hover:bg-amber-700.transition-colors.cursor-pointer.text-white.font-bold.py-3.px-8.rounded-xl.shrink-0.mb-2 type="button" data-diagnosis-target="backToHomeButton" data-action="click->step#show" data-step-step-param="lp" aria-label="トップへ戻る" トップへ戻る
     div.flex.flex-col.items-center.gap-4
       p.text-white.text-sm data-diagnosis-target="message" 準備ができたらスタートボタンを押してください。
-      button.bg-amber-500.hover:bg-amber-600.cursor-pointer.text-white.font-bold.py-2.px-4.rounded.items.disabled:opacity-20 type="button" data-action="click->diagnosis#start" data-diagnosis-target="startButton" aria-label="スタート" スタート
-      button.bg-amber-500.hover:bg-amber-600.cursor-pointer.text-white.font-bold.py-2.px-4.rounded.items.hidden type="button" data-diagnosis-target="resultButton" data-action="click->diagnosis#showFeedback" aria-label="診断結果を見る" 診断結果を見る
+      button.bg-amber-600.hover:bg-amber-700.transition-colors.cursor-pointer.text-white.font-bold.py-3.px-8.rounded-xl.disabled:opacity-20 type="button" data-action="click->diagnosis#start" data-diagnosis-target="startButton" aria-label="スタート" スタート
+      button.bg-amber-600.hover:bg-amber-700.transition-colors.cursor-pointer.text-white.font-bold.py-3.px-8.rounded-xl.hidden type="button" data-diagnosis-target="resultButton" data-action="click->diagnosis#showFeedback" aria-label="診断結果を見る" 診断結果を見る
 
   div#orientation.fixed.inset-0.z-50.bg-amber-50.flex.items-center.justify-center
     div.text-center.mt-16
       img.w-36.mx-auto.mb-4 src="/orientation.png" alt="縦向きにしてください"
       p.text-amber-800.text-xl.font-bold 縦向きでお使いください
       p.text-amber-600.text-sm.underline.mt-2 PCでの使用が推奨です
-    
-footer.flex.flex-col.items-center.gap-2.p-2.border-t.border-gray-300.bg-amber-50
-  small.text-xs © 2026 面接スマイルup!
-  div.flex.gap-2
-    = link_to "利用規約", "/terms", class: "text-xs cursor-pointer hover:text-gray-300"
-    = link_to "プライバシーポリシー", "/privacy", class: "text-xs cursor-pointer hover:text-gray-300"
+
+footer.flex.flex-col.items-center.gap-2.p-6.border-t.border-stone-200.bg-white
+  small.text-xs.text-stone-400 © 2026 面接スマイルup!
+  div.flex.gap-4
+    = link_to "利用規約", "/terms", class: "text-xs text-stone-400 cursor-pointer hover:text-stone-600"
+    = link_to "プライバシーポリシー", "/privacy", class: "text-xs text-stone-400 cursor-pointer hover:text-stone-600"
