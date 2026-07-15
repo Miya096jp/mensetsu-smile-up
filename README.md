@@ -22,25 +22,29 @@ https://mensetsu-smile-up.com/
 
 ### **カメラチェック画面**
 
-<img width="630" height="495" alt="スクリーンショット 2026-07-08 13 38 16" src="https://github.com/user-attachments/assets/4a28f6a0-36b6-4944-b210-596f37680440" />
+
+<img width="1700" height="1072" alt="スクリーンショット 2026-07-15 11 33 02" src="https://github.com/user-attachments/assets/d2c307b1-5d33-4bd1-b3f6-a804a435732c" />
 
 
 
 ### **「面接印象診断のやり方」画面**
 
-<img width="628" height="490" alt="スクリーンショット 2026-07-08 13 38 32" src="https://github.com/user-attachments/assets/ade4fee8-864e-4b0f-9788-cfe980624d07" />
+<img width="1708" height="1080" alt="スクリーンショット 2026-07-15 11 33 23" src="https://github.com/user-attachments/assets/a7b67482-464c-4e7c-8647-537e8462f1cd" />
+
 
 
 
 ### **診断画面**
 
-<img width="627" height="493" alt="スクリーンショット 2026-07-08 13 38 46" src="https://github.com/user-attachments/assets/01c2558c-54d6-43f5-9d77-6e73d511c78c" />
+<img width="1708" height="1086" alt="スクリーンショット 2026-07-15 11 33 55" src="https://github.com/user-attachments/assets/0126d350-a9e1-4ae8-ab92-43ff67146592" />
+
 
 
 
 ### **診断結果画面**
 
-<img width="624" height="490" alt="スクリーンショット 2026-07-08 13 39 07" src="https://github.com/user-attachments/assets/dffaaac7-95bd-4c0d-98a5-3551528e2409" />
+<img width="1706" height="1078" alt="スクリーンショット 2026-07-15 11 33 43" src="https://github.com/user-attachments/assets/13d341b3-efd6-4676-9c4f-5d369e33444f" />
+
 
 
 
