@@ -36,15 +36,15 @@ https://mensetsu-smile-up.com/
 
 ### **診断画面**
 
-<img width="1708" height="1086" alt="スクリーンショット 2026-07-15 11 33 55" src="https://github.com/user-attachments/assets/0126d350-a9e1-4ae8-ab92-43ff67146592" />
 
 
+
+<img width="1706" height="1078" alt="スクリーンショット 2026-07-15 11 33 43" src="https://github.com/user-attachments/assets/13d341b3-efd6-4676-9c4f-5d369e33444f" />
 
 
 ### **診断結果画面**
 
-<img width="1706" height="1078" alt="スクリーンショット 2026-07-15 11 33 43" src="https://github.com/user-attachments/assets/13d341b3-efd6-4676-9c4f-5d369e33444f" />
-
+<img width="1708" height="1086" alt="スクリーンショット 2026-07-15 11 33 55" src="https://github.com/user-attachments/assets/0126d350-a9e1-4ae8-ab92-43ff67146592" />
 
 
 
