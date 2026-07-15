@@ -76,7 +76,7 @@ git clone https://github.com/Miya096jp/mensetsu-smile-up.git
 cd mensetsu-smile-up
 ```
 
-2. .env.exampleをコピーして.envを作成しAPIキーを設定
+3. .env.exampleをコピーして.envを作成しAPIキーを設定
 
 ```bash
 cp .env.example .env
@@ -88,11 +88,11 @@ GEMINI_API_KEY="<your api key>"
 ```
 
 
-3. `docker compose build`でイメージをビルド
+4. `docker compose build`でイメージをビルド
 
-4. `docker compose up`でサーバー起動
+5. `docker compose up`でサーバー起動
 
-5. `http://localhost:3000`にアクセス。
+6. `http://localhost:3000`にアクセス。
 
 ## Lint/Test
 
