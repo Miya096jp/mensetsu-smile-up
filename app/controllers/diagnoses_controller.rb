@@ -3,6 +3,14 @@ class DiagnosesController < ApplicationController
   end
 
   def create
+    dianosis_request = DiagnosisRequest.new(photos: photo_params[:photos])
+
+    if dianosis_request.invalid?
+      Rails.logger.warn("[ValidationError] #{dianosis_request.errors.full_messages.join(', ')}")
+      render json: { message: "不正なリクエストです" }, status: :unprocessable_entity
+      return
+    end
+
     diagnosis = Llm::DiagnoseImpression.call(photos: photo_params[:photos])
     render json: { content: diagnosis.content }, status: :ok
   rescue => e
