@@ -14,4 +14,14 @@ export default class extends Controller {
 			console.warn("Camera not available", e.message);
 		}
 	}
+
+	stopCamera() {
+		const stream = this.videoTarget.srcObject;
+		if (!stream) return;
+
+		stream.getTracks().forEach((track) => {
+			track.stop();
+		});
+		this.videoTarget.srcObject = null;
+	}
 }
