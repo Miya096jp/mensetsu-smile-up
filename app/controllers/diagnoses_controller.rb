@@ -13,7 +13,7 @@ class DiagnosesController < ApplicationController
 
     diagnosis = Llm::DiagnoseImpression.call(photos: photo_params[:photos])
     render json: { content: diagnosis.content }, status: :ok
-  rescue RubyLLM::RateLimitError, RubyLLM::ServerError, RubyLLM::ServiceUnavailableError, RubyLLM::OverloadedError => e
+  rescue RubyLLM::RateLimitError, RubyLLM::ServerError, RubyLLM::ServiceUnavailableError, RubyLLM::OverloadedError, Llm::DiagnoseImpression::InvalidResponse => e
     Rails.logger.error("[UpstreamError] #{e.class}: #{e.message}")
     render json: { message: "AI回答の取得に失敗しました" }, status: :service_unavailable
   rescue => e

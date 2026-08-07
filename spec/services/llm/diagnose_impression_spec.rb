@@ -7,5 +7,16 @@ RSpec.describe Llm::DiagnoseImpression, type: :model do
       result = Llm::DiagnoseImpression.call(photos: [])
       expect(result.content).to eq "good impression"
     end
+
+    it "returns ai diagnosis within 500 characters" do
+      RubyLLM::Test.stub_response("a" * 500)
+      result = Llm::DiagnoseImpression.call(photos: [])
+      expect(result.content).to eq "a" * 500
+    end
+
+    it "returns InvalidResponse over 501 characters" do
+      RubyLLM::Test.stub_response("a" * 501)
+      expect { Llm::DiagnoseImpression.call(photos: []) }.to raise_error(Llm::DiagnoseImpression::InvalidResponse)
+    end
   end
 end
