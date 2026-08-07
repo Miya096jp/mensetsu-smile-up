@@ -37,5 +37,11 @@ RSpec.describe "Diagnoses", type: :request do
       expect(response.status).to eq 500
       expect(hash["message"]).to eq "エラーが発生しました"
     end
+
+    it "returns 503 when llm response is invalid" do
+      allow(Llm::DiagnoseImpression).to receive(:call).and_raise(Llm::DiagnoseImpression::InvalidResponse)
+      post "/diagnoses", params: { photos: photos }
+      expect(response.status).to eq 503
+    end
   end
 end
