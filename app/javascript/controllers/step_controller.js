@@ -25,6 +25,8 @@ export default class extends Controller {
 		this.currentStep.classList.add("hidden");
 		this.lpTarget.classList.remove("hidden");
 		this.currentStep = this.lpTarget;
+		this.cameraCheckOutlet.stopCamera();
+		this.diagnosisOutlet.stopCamera();
 	}
 
 	startCamera(e) {
@@ -32,6 +34,7 @@ export default class extends Controller {
 	}
 
 	proceedFromCameraCheck() {
+		this.cameraCheckOutlet.stopCamera();
 		if (localStorage.saveKey === "checked") {
 			this.switchTo("diagnosis");
 			this.diagnosisOutlet.startCamera();
