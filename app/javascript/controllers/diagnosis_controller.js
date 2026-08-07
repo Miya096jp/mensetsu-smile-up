@@ -45,6 +45,7 @@ export default class extends Controller {
 
 			this.capturedPhotos = [];
 			this.interviewVideoTarget.addEventListener("ended", () => {
+				console.log("finish() called!!");
 				this.finish();
 			});
 		} catch (e) {
@@ -138,9 +139,16 @@ export default class extends Controller {
 		this.startButtonTarget.classList.add("hidden");
 		this.resultButtonTarget.classList.remove("hidden");
 		this.previewTarget.classList.add("hidden");
-		this.previewTarget.srcObject.getTracks().forEach((track) => {
+		this.stopCamera();
+	}
+
+	stopCamera() {
+		const stream = this.previewTarget.srcObject;
+		if (!stream) return;
+		stream.getTracks().forEach((track) => {
 			track.stop();
 		});
+		this.previewTarget.srcObject = null;
 	}
 
 	showFeedback() {
