@@ -45,7 +45,6 @@ export default class extends Controller {
 
 			this.capturedPhotos = [];
 			this.interviewVideoTarget.addEventListener("ended", () => {
-				console.log("finish() called!!");
 				this.finish();
 			});
 		} catch (e) {
