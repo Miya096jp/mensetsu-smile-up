@@ -1,5 +1,5 @@
 class Rack::Attack
-  throttle("req/ip", limit: 60, period: 1.minutes) do |req|
+  throttle("req/ip", limit: 3, period: 1.minutes) do |req|
     req.ip if req.path == "/diagnoses" && req.post?
   end
 
