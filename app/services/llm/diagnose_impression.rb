@@ -20,8 +20,8 @@ class Llm::DiagnoseImpression
 
   def fetch_ai_response
     instruction_prompt = File.read(Rails.root.join("app/prompts/diagnose_impression.md"))
-    chat_gemini = RubyLLM.chat(model: "gemini-2.5-flash")
-    response = chat_gemini.ask "#{instruction_prompt}", with: @photos
+    chat_gemini = RubyLLM.chat(model: "gemini-2.5-flash").with_instructions(instruction_prompt)
+    response = chat_gemini.ask "インストラクションに従って分析してください", with: @photos
     # config/initializers/ruby_llm.rbにretry設定
 
     raise InvalidResponse, "文字列超過: #{response.content.length}文字" if response.content.length > MAX_LENGTH
