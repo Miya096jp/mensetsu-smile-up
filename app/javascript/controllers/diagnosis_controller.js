@@ -28,38 +28,48 @@ export default class extends Controller {
 			this.previewTarget.srcObject = stream;
 			await this.previewTarget.play();
 		} catch (e) {
-			console.warn("Camera not available", e.message);
+			console.error("Camera not available", e);
+			this.teardown();
 		}
 	}
 
 	async start() {
+		this.overlayTarget.classList.add("hidden");
+		this.messageTarget.textContent = "診断中...";
+		this.startButtonTarget.disabled = true;
 		try {
-			this.overlayTarget.classList.add("hidden");
-			this.messageTarget.textContent = "診断中...";
-			this.startButtonTarget.disabled = true;
 			await this.interviewVideoTarget.play();
-
-			this.prepTimer = setTimeout(() => {
-				this.startIntervalCapture();
-			}, this.prepDurationValue);
-
-			this.capturedPhotos = [];
-			this.interviewVideoTarget.addEventListener("ended", () => {
-				this.finish();
-			});
 		} catch (e) {
-			console.warn("Interview video not available", e.message);
+			console.error("Interview video not available", e);
+			this.teardown();
 		}
+		this.prepTimer = setTimeout(() => {
+			this.startIntervalCapture();
+		}, this.prepDurationValue);
+
+		this.capturedPhotos = [];
+		this.interviewVideoTarget.addEventListener("ended", () => {
+			this.finish();
+		});
 	}
 
 	async startIntervalCapture() {
 		this.capturedCount = 0;
-		await this.capture();
-
-		const intervalTimer = setInterval(async () => {
+		try {
 			await this.capture();
+		} catch (e) {
+			console.error("capture failed", e);
+			this.teardown();
+		}
+		this.intervalTimer = setInterval(async () => {
+			try {
+				await this.capture();
+			} catch (e) {
+				console.error("capture failed", e);
+				this.teardown();
+			}
 			if (this.capturedCount >= this.totalShotsValue) {
-				clearInterval(intervalTimer);
+				clearInterval(this.intervalTimer);
 				await this.fetch();
 			}
 		}, this.intervalDurationValue);
@@ -119,7 +129,8 @@ export default class extends Controller {
 			this.aiDiagnosisTarget.classList.remove("hidden");
 			this.loaderTarget.classList.add("hidden");
 		} catch (e) {
-			console.warn("POST failed", e);
+			console.error("POST failed", e);
+			this.teardown();
 		}
 	}
 
@@ -128,7 +139,8 @@ export default class extends Controller {
 			await this.interviewVideoTarget.pause();
 			this.interviewVideoTarget.currentTime = 0;
 		} catch (e) {
-			console.warn("Interview video not available", e.message);
+			console.error("Interview video not available", e);
+			this.teardown();
 		}
 	}
 
@@ -138,6 +150,12 @@ export default class extends Controller {
 		this.startButtonTarget.classList.add("hidden");
 		this.resultButtonTarget.classList.remove("hidden");
 		this.previewTarget.classList.add("hidden");
+		this.teardown();
+	}
+
+	teardown() {
+		clearTimeout(this.prepTimer);
+		clearInterval(this.intervalTimer);
 		this.stopCamera();
 	}
 
