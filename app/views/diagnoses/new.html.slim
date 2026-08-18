@@ -23,7 +23,7 @@ main.flex-1.bg-stone-50 data-controller="step" data-step-camera-check-outlet="#c
           p.text-lg.md:text-xl.text-stone-600.leading-relaxed.max-w-xl.break-keep
             | 表情と姿勢の印象を<wbr>AIが診断し、<wbr>改善アドバイスを<wbr>その場でお届け。<wbr>就活・転職の<wbr>面接対策を、<wbr>登録不要・<wbr>たった1分で。
           div.flex.flex-col.items-center.gap-3.w-full.pt-2.md:items-start
-            button type="button" data-action="click->step#show click->step#startCamera" data-step-step-param="cameraCheck" aria-label="診断開始" class="bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition-colors cursor-pointer text-white text-lg font-bold py-4 px-12 rounded-xl shadow-lg shadow-amber-600/30 w-full max-w-sm md:w-auto" 診断を始める
+            button type="button" data-action="click->step#show" data-step-step-param="cameraCheck" aria-label="診断開始" class="bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition-colors cursor-pointer text-white text-lg font-bold py-4 px-12 rounded-xl shadow-lg shadow-amber-600/30 w-full max-w-sm md:w-auto" 診断を始める
             div.flex.flex-col.gap-1.5.w-full.max-w-sm.md:w-auto
               p.text-sm.text-stone-500.break-keep.text-center.md:text-left
                 span.text-amber-700.font-semibold 登録不要
@@ -112,7 +112,7 @@ main.flex-1.bg-stone-50 data-controller="step" data-step-camera-check-outlet="#c
 
       section.flex.flex-col.items-center.gap-5.text-center
         h3.text-2xl.md:text-3xl.font-bold.text-stone-900.break-keep 準備はいりません。<wbr>今すぐ試せます。
-        button type="button" data-action="click->step#show click->step#startCamera" data-step-step-param="cameraCheck" aria-label="診断開始" class="bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition-colors cursor-pointer text-white text-lg font-bold py-4 px-12 rounded-xl shadow-lg shadow-amber-600/30 w-full max-w-sm" 無料で診断してみる
+        button type="button" data-action="click->step#show" data-step-step-param="cameraCheck" aria-label="診断開始" class="bg-amber-600 hover:bg-amber-700 active:bg-amber-700 transition-colors cursor-pointer text-white text-lg font-bold py-4 px-12 rounded-xl shadow-lg shadow-amber-600/30 w-full max-w-sm" 無料で診断してみる
 
   div#camera-check.fixed.inset-0.z-50.flex.flex-col.gap-2.md:gap-8.p-8.bg-stone-900.hidden data-step-target="cameraCheck" data-controller="camera-check"
     div.flex.items-center.justify-between.mb-2
@@ -136,6 +136,12 @@ main.flex-1.bg-stone-50 data-controller="step" data-step-camera-check-outlet="#c
     div.flex.flex-col.items-center.gap-4
       p.text-white.text-sm 顔をボックスにあてはめてから「次へ」を押してください
       button.bg-amber-600.hover:bg-amber-700.transition-colors.cursor-pointer.text-white.font-bold.py-3.px-8.rounded-xl type="button" data-action="click->step#proceedFromCameraCheck" aria-label="次へ" 次へ
+
+  div#device-error.fixed.inset-0.z-50.flex.flex-col.items-center.justify-center.gap-8.p-8.bg-stone-900.hidden data-step-target="deviceError"
+    div.flex.flex-col.items-center.gap-4.text-center.max-w-sm
+      p.text-white.text-base.leading-relaxed.break-keep
+        | カメラが使用できません。<wbr>ブラウザの設定でカメラへのアクセスを許可してから、もう一度お試しください。
+    button.bg-amber-600.hover:bg-amber-700.active:bg-amber-700.transition-colors.cursor-pointer.text-white.font-bold.py-3.px-8.rounded-xl.shadow-lg.shadow-amber-600/30.w-full.max-w-sm type="button" data-action="click->step#show" data-step-step-param="lp" aria-label="トップページへ戻る" トップページへ戻る
 
   div#guide.fixed.inset-0.z-50.flex.flex-col.p-8.bg-stone-900.hidden data-step-target="guide" data-controller="guide"
     div.flex.items-center.justify-between.mb-4
@@ -169,8 +175,7 @@ main.flex-1.bg-stone-50 data-controller="step" data-step-camera-check-outlet="#c
       div.flex.gap-2
         input.cursor-pointer type="checkbox" id="skip-guide" data-guide-target="checkBox"
         label.text-white.flex.cursor-pointer for="skip-guide" 次回からこの説明を表示しない
-      button.bg-amber-600.hover:bg-amber-700.transition-colors.cursor-pointer.text-white.font-bold.py-3.px-8.rounded-xl type="button" aria-label="次へ" data-action="click->guide#check click->step#show click->step#startCamera" data-step-step-param="diagnosis" 次へ
-
+      button.bg-amber-600.hover:bg-amber-700.transition-colors.cursor-pointer.text-white.font-bold.py-3.px-8.rounded-xl type="button" aria-label="次へ" data-action="click->guide#check click->step#show" data-step-step-param="diagnosis" 次へ
 
   div#diagnosis.fixed.inset-0.z-50.flex.flex-col.gap-2.md:gap-8.p-8.bg-stone-900.hidden data-step-target="diagnosis" data-controller="diagnosis"
     div.flex.items-center.justify-between.mb-4

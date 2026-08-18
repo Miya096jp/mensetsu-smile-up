@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
-	static targets = ["lp", "cameraCheck", "guide", "diagnosis"];
+	static targets = ["lp", "cameraCheck", "guide", "diagnosis", "deviceError"];
 	static outlets = ["camera-check", "diagnosis"];
 
 	connect() {
@@ -11,13 +11,23 @@ export default class extends Controller {
 		this.switchTo(e.params.step);
 	}
 
-	switchTo(step) {
+	async switchTo(step) {
+		this.deviceErrorTarget.classList.add("hidden");
 		const nextStep = this[`${step}Target`];
-		if (step === "diagnosis") {
-			this.diagnosisOutlet.reset();
+		if (step === "diagnosis" || step === "cameraCheck") {
+			try {
+				await this[`${step}Outlet`].startCamera();
+			} catch {
+				this.currentStep.classList.add("hidden");
+				this.deviceErrorTarget.classList.remove("hidden");
+				return;
+			}
+			if (step === "diagnosis") {
+				this.diagnosisOutlet.reset();
+			}
 		}
-		nextStep.classList.remove("hidden");
 		this.currentStep.classList.add("hidden");
+		nextStep.classList.remove("hidden");
 		this.currentStep = nextStep;
 	}
 
@@ -29,15 +39,16 @@ export default class extends Controller {
 		this.diagnosisOutlet.stopCamera();
 	}
 
-	startCamera(e) {
-		this[`${e.params.step}Outlet`].startCamera();
-	}
-
-	proceedFromCameraCheck() {
+	async proceedFromCameraCheck() {
 		this.cameraCheckOutlet.stopCamera();
 		if (localStorage.saveKey === "checked") {
+			try {
+				await this.diagnosisOutlet.startCamera();
+			} catch {
+				this.deviceErrorTarget.classList.remove("hidden");
+				return;
+			}
 			this.switchTo("diagnosis");
-			this.diagnosisOutlet.startCamera();
 		} else {
 			this.switchTo("guide");
 		}
