@@ -11,7 +11,9 @@ export default class extends Controller {
 			this.videoTarget.srcObject = stream;
 			await this.videoTarget.play();
 		} catch (e) {
-			console.warn("Camera not available", e.message);
+			console.error("[camera-ckeck] Camera not available", e);
+			this.stopCamera();
+			throw e;
 		}
 	}
 
