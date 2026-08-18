@@ -14,15 +14,17 @@ export default class extends Controller {
 	async switchTo(step) {
 		this.deviceErrorTarget.classList.add("hidden");
 		const nextStep = this[`${step}Target`];
-		if (step === "diagnosis") {
+		if (step === "diagnosis" || step === "cameraCheck") {
 			try {
-				await this.diagnosisOutlet.startCamera();
+				await this[`${step}Outlet`].startCamera();
 			} catch {
 				this.currentStep.classList.add("hidden");
 				this.deviceErrorTarget.classList.remove("hidden");
 				return;
 			}
-			this.diagnosisOutlet.reset();
+			if (step === "diagnosis") {
+				this.diagnosisOutlet.reset();
+			}
 		}
 		this.currentStep.classList.add("hidden");
 		nextStep.classList.remove("hidden");
@@ -35,14 +37,6 @@ export default class extends Controller {
 		this.currentStep = this.lpTarget;
 		this.cameraCheckOutlet.stopCamera();
 		this.diagnosisOutlet.stopCamera();
-	}
-
-	async startCamera(e) {
-		try {
-			await this[`${e.params.step}Outlet`].startCamera();
-		} catch {
-			this.deviceErrorTarget.classList.remove("hidden");
-		}
 	}
 
 	async proceedFromCameraCheck() {
