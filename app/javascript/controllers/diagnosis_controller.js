@@ -30,6 +30,7 @@ export default class extends Controller {
 		} catch (e) {
 			console.error("Camera not available", e);
 			this.teardown();
+			throw e;
 		}
 	}
 
