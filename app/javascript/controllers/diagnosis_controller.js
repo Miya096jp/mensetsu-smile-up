@@ -134,14 +134,8 @@ export default class extends Controller {
 		}
 	}
 
-	async stop() {
-		try {
-			await this.interviewVideoTarget.pause();
-			this.interviewVideoTarget.currentTime = 0;
-		} catch (e) {
-			console.error("Interview video not available", e);
-			this.teardown();
-		}
+	stopInterviewVideo() {
+		this.interviewVideoTarget.pause();
 	}
 
 	finish() {
@@ -157,6 +151,7 @@ export default class extends Controller {
 		clearTimeout(this.prepTimer);
 		clearInterval(this.intervalTimer);
 		this.stopCamera();
+		this.stopInterviewVideo();
 	}
 
 	stopCamera() {
