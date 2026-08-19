@@ -61,6 +61,8 @@ export default class extends Controller {
 		} catch (e) {
 			console.error("capture failed", e);
 			this.teardown();
+			await this.startCamera();
+			this.reset("予期せぬエラーが発生しました。もう一度お試しください。");
 		}
 		this.intervalTimer = setInterval(async () => {
 			try {
@@ -68,6 +70,8 @@ export default class extends Controller {
 			} catch (e) {
 				console.error("capture failed", e);
 				this.teardown();
+				await this.startCamera();
+				this.reset("予期せぬエラーが発生しました。もう一度お試しください。");
 			}
 			if (this.capturedCount >= this.totalShotsValue) {
 				clearInterval(this.intervalTimer);
@@ -173,15 +177,14 @@ export default class extends Controller {
 		this.backToHomeButtonTarget.classList.remove("hidden");
 	}
 
-	reset() {
+	reset(message = "準備ができたらスタートボタンを押してください。") {
 		this.feedbackTarget.classList.add("hidden");
 		this.interviewVideoTarget.classList.remove("hidden");
 		this.resultButtonTarget.classList.add("hidden");
 		this.startButtonTarget.classList.remove("hidden");
 		this.messageTarget.classList.remove("hidden");
 		this.startButtonTarget.disabled = false;
-		this.messageTarget.textContent =
-			"準備ができたらスタートボタンを押してください。";
+		this.messageTarget.textContent = message;
 		this.overlayTarget.classList.remove("hidden");
 		this.previewTarget.classList.remove("hidden");
 		this.setVideo();
