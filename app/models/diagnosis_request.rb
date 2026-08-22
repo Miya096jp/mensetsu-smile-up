@@ -10,6 +10,7 @@ class DiagnosisRequest
   private
 
   def must_have_two_photos
+    return if photos.blank?
     errors.add(:photos, "の枚数が不正です") if photos.size != 2
   end
 
