@@ -42,12 +42,6 @@ export default class extends Controller {
 	async proceedFromCameraCheck() {
 		this.cameraCheckOutlet.stopCamera();
 		if (localStorage.saveKey === "checked") {
-			try {
-				await this.diagnosisOutlet.startCamera();
-			} catch {
-				this.deviceErrorTarget.classList.remove("hidden");
-				return;
-			}
 			this.switchTo("diagnosis");
 		} else {
 			this.switchTo("guide");
