@@ -3,8 +3,15 @@ require "rails_helper"
 RSpec.describe DiagnosisRequest, type: :model do
   include ActionDispatch::TestProcess::FixtureFile
 
-  it "is not valid with no jpeg images" do
+  it "is not valid when photos is empty" do
     photos = []
+    result = DiagnosisRequest.new(photos: photos)
+    expect(result).not_to be_valid
+    expect(result.errors[:photos]).to include("がありません")
+  end
+
+  it "is not valid when photos is nil" do
+    photos = nil
     result = DiagnosisRequest.new(photos: photos)
     expect(result).not_to be_valid
     expect(result.errors[:photos]).to include("がありません")
