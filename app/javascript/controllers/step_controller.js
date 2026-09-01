@@ -15,12 +15,17 @@ export default class extends Controller {
 		this.deviceErrorTarget.classList.add("hidden");
 		const nextStep = this[`${step}Target`];
 		if (step === "diagnosis" || step === "cameraCheck") {
+			if (this.transitioning) return;
+			this.transitioning = true;
+
 			try {
 				await this[`${step}Outlet`].startCamera();
 			} catch {
 				this.currentStep.classList.add("hidden");
 				this.deviceErrorTarget.classList.remove("hidden");
 				return;
+			} finally {
+				this.transitioning = false;
 			}
 			if (step === "diagnosis") {
 				this.diagnosisOutlet.reset();
