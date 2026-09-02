@@ -17,6 +17,27 @@ RSpec.describe DiagnosisRequest, type: :model do
     expect(result.errors[:photos]).to include("がありません")
   end
 
+  it "is not valid when photos is array of nil " do
+    photos = [ nil, nil ]
+    result = DiagnosisRequest.new(photos: photos)
+    expect(result).not_to be_valid
+    expect(result.errors[:photos]).to include("の枚数が不正です")
+  end
+
+  it "is not valid when photos is not array" do
+    photos = "string"
+    result = DiagnosisRequest.new(photos: photos)
+    expect(result).not_to be_valid
+    expect(result.errors[:photos]).to include("は配列にしてください")
+  end
+
+  it "is not valid when photos is array of nil " do
+    photos = [ nil, nil ]
+    result = DiagnosisRequest.new(photos: photos)
+    expect(result).not_to be_valid
+    expect(result.errors[:photos]).to include("の枚数が不正です")
+  end
+
   it "is valid with two jpeg images" do
     photos = []
     2.times do
