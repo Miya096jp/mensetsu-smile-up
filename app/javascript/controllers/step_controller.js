@@ -41,7 +41,7 @@ export default class extends Controller {
 		this.lpTarget.classList.remove("hidden");
 		this.currentStep = this.lpTarget;
 		this.cameraCheckOutlet.stopCamera();
-		this.diagnosisOutlet.stopCamera();
+		this.diagnosisOutlet.teardown();
 	}
 
 	async proceedFromCameraCheck() {
