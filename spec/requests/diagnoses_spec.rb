@@ -38,6 +38,18 @@ RSpec.describe "Diagnoses", type: :request do
       expect(hash["message"]).to eq "エラーが発生しました"
     end
 
+    it "returns 503 when llm request times out" do
+      allow(Llm::DiagnoseImpression).to receive(:call).and_raise(Faraday::TimeoutError)
+      post "/diagnoses", params: { photos: photos }
+      expect(response.status).to eq 503
+    end
+
+    it "returns 503 when llm connection fails" do
+      allow(Llm::DiagnoseImpression).to receive(:call).and_raise(Faraday::ConnectionFailed)
+      post "/diagnoses", params: { photos: photos }
+      expect(response.status).to eq 503
+    end
+
     it "returns 503 when llm response is invalid" do
       allow(Llm::DiagnoseImpression).to receive(:call).and_raise(Llm::DiagnoseImpression::InvalidResponse)
       post "/diagnoses", params: { photos: photos }
