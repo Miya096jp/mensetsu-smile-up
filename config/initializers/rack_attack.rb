@@ -3,6 +3,14 @@ class Rack::Attack
     req.ip if req.path == "/diagnoses" && req.post?
   end
 
+  DIAGNOSES_DAILY_LIMIT = 100
+
+  throttle("diagnoses/global",
+           limit: ->(_req) { DIAGNOSES_DAILY_LIMIT },
+           period: 1.day) do |req|
+    "global" if req.post? && req.path == "/diagnoses"
+  end
+
   ActiveSupport::Notifications.subscribe("throttle.rack_attack") do |name, start, finish, instrumenter_id, payload|
     res = payload[:request].env["rack.attack.match_data"]
     Rails.logger.warn(
