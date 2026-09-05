@@ -23,6 +23,8 @@ servers:
 proxy:
   ssl: true
   host: mensetsu-smile-up.com
+  buffering:
+    max_request_body: 1000000
 
 # Where you keep your container images.
 registry:
