@@ -32,5 +32,21 @@ RSpec.describe "RackAttach", type: :request do
         expect(response.status).to eq 429
       end
     end
+
+    describe "ip daily limit" do
+      before do
+        stub_const("Rack::Attack::DIAGNOSES_IP_DAILY_LIMIT", 2)
+      end
+
+      it "not returns 429 within ip daily limit" do
+        2.times { post "/diagnoses", params: { photos: [] } }
+        expect(response.status).not_to eq 429
+      end
+
+      it "returns 429 over ip daily limit" do
+        3.times { post "/diagnoses", params: { photos: [] } }
+        expect(response.status).to eq 429
+      end
+    end
   end
 end
