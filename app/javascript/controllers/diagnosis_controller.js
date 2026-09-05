@@ -19,6 +19,24 @@ export default class extends Controller {
 		totalShots: { type: Number, default: 2 },
 	};
 
+	connect() {
+		this.isRunning = false;
+		this.onVisibilityChange = async () => {
+			if (document.hidden && this.isRunning) {
+				this.isRunning = false;
+				this.teardown();
+				await this.startCamera();
+				this.reset("診断が中断されました。もう一度お試しください。");
+			}
+		};
+		document.addEventListener("visibilitychange", this.onVisibilityChange);
+	}
+
+	disconnect() {
+		this.teardown();
+		document.removeEventListener("visibilitychange", this.onVisibilityChange);
+	}
+
 	async startCamera() {
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({
@@ -35,6 +53,7 @@ export default class extends Controller {
 	}
 
 	async start() {
+		this.isRunning = true;
 		this.overlayTarget.classList.add("hidden");
 		this.messageTarget.textContent = "診断中...";
 		this.startButtonTarget.disabled = true;
@@ -148,6 +167,7 @@ export default class extends Controller {
 	}
 
 	finish() {
+		this.isRunning = false;
 		this.overlayTarget.classList.remove("hidden");
 		this.messageTarget.textContent = "お疲れさまでした!";
 		this.startButtonTarget.classList.add("hidden");
