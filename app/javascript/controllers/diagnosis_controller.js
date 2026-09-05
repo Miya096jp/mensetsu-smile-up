@@ -49,9 +49,8 @@ export default class extends Controller {
 		}, this.prepDurationValue);
 
 		this.capturedPhotos = [];
-		this.interviewVideoTarget.addEventListener("ended", () => {
-			this.finish();
-		});
+		this.onEnded = () => this.finish();
+		this.interviewVideoTarget.addEventListener("ended", this.onEnded);
 	}
 
 	async startIntervalCapture() {
@@ -157,6 +156,10 @@ export default class extends Controller {
 		clearInterval(this.intervalTimer);
 		this.stopCamera();
 		this.stopInterviewVideo();
+		if (this.onEnded) {
+			this.interviewVideoTarget.removeEventListener("ended", this.onEnded);
+			this.onEnded = null;
+		}
 	}
 
 	stopCamera() {
