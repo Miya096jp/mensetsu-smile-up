@@ -43,6 +43,9 @@ export default class extends Controller {
 		} catch (e) {
 			console.error("Interview video not available", e);
 			this.teardown();
+			await this.startCamera();
+			this.reset("動画の再生に失敗しました。もう一度お試しください。");
+			return;
 		}
 		this.prepTimer = setTimeout(() => {
 			this.startIntervalCapture();
@@ -135,6 +138,8 @@ export default class extends Controller {
 		} catch (e) {
 			console.error("POST failed", e);
 			this.teardown();
+			await this.startCamera();
+			this.reset("通信に失敗しました。もう一度お試しください。");
 		}
 	}
 
