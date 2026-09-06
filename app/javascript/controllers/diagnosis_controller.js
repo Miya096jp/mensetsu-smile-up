@@ -21,10 +21,15 @@ export default class extends Controller {
 
 	connect() {
 		this.isRunning = false;
+		this.interrupted = false;
 		this.onVisibilityChange = async () => {
 			if (document.hidden && this.isRunning) {
-				this.isRunning = false;
 				this.teardown();
+				this.interrupted = true;
+				return;
+			}
+			if (!document.hidden && this.interrupted) {
+				this.interrupted = false;
 				await this.startCamera();
 				this.reset("診断が中断されました。もう一度お試しください。");
 			}
