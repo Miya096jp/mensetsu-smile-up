@@ -40,10 +40,10 @@ The test suite is RSpec, and CI (`.github/workflows/ci.yml`) is the source of tr
 
 ### Frontend: one page, Stimulus-driven step machine
 
-The only user-facing route is `root "diagnoses#new"` (`app/views/diagnoses/new.html.slim`,
-Slim templates throughout). No Turbo navigation — the whole flow is fullscreen overlay
-`<div>`s toggled by Stimulus. JS is delivered via importmap (no bundler); Tailwind via
-tailwindcss-rails.
+The main/interactive route is `root "diagnoses#new"` (`app/views/diagnoses/new.html.slim`,
+Slim templates throughout); `PagesController` also serves static `terms`/`privacy` pages.
+No Turbo navigation — the whole diagnosis flow is fullscreen overlay `<div>`s toggled by
+Stimulus. JS is delivered via importmap (no bundler); Tailwind via tailwindcss-rails.
 
 - `step_controller.js` — orchestrator. Holds `currentStep` and transitions
   `lp → cameraCheck → guide → diagnosis`, showing a `deviceError` panel if
@@ -56,6 +56,20 @@ tailwindcss-rails.
   webcam `<video>` onto a 300×400 `<canvas>` and `toBlob("image/jpeg", 0.8)`, then POSTs
   them as `photos[]` multipart to `/diagnoses` with the CSRF token, and renders the JSON
   `content` (or error `message`) into the feedback panel.
+
+Every failure path in `diagnosis_controller.js` (interviewer-video playback error, capture
+error, fetch/POST error, and — via a `visibilitychange` listener registered in `connect()`
+— the tab being hidden mid-diagnosis) recovers the same way: `teardown()` → `startCamera()`
+→ `reset(message)`. Reuse this pattern rather than inventing new error handling; `isRunning`
+tracks whether a diagnosis is in flight so the visibility check only fires mid-run, and
+`disconnect()` tears down the camera and removes the listener.
+
+**Slim gotcha:** in `new.html.slim`, boolean `<video>` attributes must be written as
+`autoplay=true playsinline=true muted=true`, not bare — a bare boolean attribute following a
+quoted attribute (e.g. a `data-*="..."`) is serialized as literal text instead of an HTML
+attribute. `playsinline=true` on the interviewer `<video>` is required to stop iOS Safari
+from taking over with native fullscreen playback (which froze the preview and caused blank
+captures) — don't remove it.
 
 ### Backend: validate → prompt → Gemini
 
@@ -73,19 +87,23 @@ tailwindcss-rails.
    All branches log with a `[Tag]` prefix.
 
 RubyLLM retry/backoff config lives in `config/initializers/ruby_llm.rb`
-(`max_retries: 3`). The prompt file itself contains prompt-injection defenses (it tells
-the model to never interpret text visible in the images as instructions) — preserve that
-intent when editing it.
+(`max_retries: 1`, `retry_backoff_factor: 3`, `request_timeout: 30`). The prompt file itself
+contains prompt-injection defenses (it tells the model to never interpret text visible in
+the images as instructions) — preserve that intent when editing it.
 
 ### Abuse protection
 
-`config/initializers/rack_attack.rb` throttles `POST /diagnoses` to **3 requests / minute / IP**.
+`config/initializers/rack_attack.rb` throttles `POST /diagnoses` with three limits: **3
+requests / minute / IP**, a per-IP daily cap (`DIAGNOSES_IP_DAILY_LIMIT`, 10/day), and a
+global daily cap across all IPs (`DIAGNOSES_DAILY_LIMIT`, 100/day).
 
 ## Deployment
 
 Push to `main` → GitHub Actions `cd.yml` runs CI, then `kamal deploy` to a Sakura VPS,
 image on `ghcr.io`, served at https://mensetsu-smile-up.com. Needs `RAILS_MASTER_KEY`,
-`GEMINI_API_KEY`, `SSH_PRIVATE_KEY` repo secrets. Config in `config/deploy.yml`.
+`GEMINI_API_KEY`, `SSH_PRIVATE_KEY` repo secrets. Config in `config/deploy.yml`, which also
+caps the Kamal proxy's `max_request_body` at 1MB (comfortably above the 2×150KB photo
+upload). `config/environments/production.rb` sets `force_ssl`/`assume_ssl`.
 
 ## Stack notes
 
