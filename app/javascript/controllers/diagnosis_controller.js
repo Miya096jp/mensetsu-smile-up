@@ -167,7 +167,6 @@ export default class extends Controller {
 	}
 
 	finish() {
-		this.isRunning = false;
 		this.overlayTarget.classList.remove("hidden");
 		this.messageTarget.textContent = "お疲れさまでした!";
 		this.startButtonTarget.classList.add("hidden");
@@ -177,6 +176,7 @@ export default class extends Controller {
 	}
 
 	teardown() {
+		this.isRunning = false;
 		clearTimeout(this.prepTimer);
 		clearInterval(this.intervalTimer);
 		this.stopCamera();
