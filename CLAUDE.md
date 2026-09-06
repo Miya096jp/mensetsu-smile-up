@@ -110,3 +110,20 @@ upload). `config/environments/production.rb` sets `force_ssl`/`assume_ssl`.
 Ruby 4.0.5 / Rails 8.1. SQLite + the solid_* gems are present from the Rails 8 default
 stack but there are no app tables. `allow_browser versions: :modern` in
 `ApplicationController` gates old browsers.
+
+
+## 調査済み・意図的に対応していないこと
+
+指摘として繰り返し挙がるが、いずれも調査のうえ見送ったもの。
+
+- **`camera_check_controller` に `visibilitychange` / `disconnect()` がない** —
+  タイマーが動かない画面のため復帰時の不確定さがなく、ストリーム維持のほうが自然。
+- **`startCamera()` に Promise 解決後のガードがない** —
+  `switchTo()` が `await` + `transitioning` フラグで再入を防いでおり、中断経路がない。
+- **`trusted_proxies` が未設定** —
+  本番で `X-Forwarded-For` 偽装が無視されることを実測で確認済み。
+- **全体日次上限による DoS を許容** —
+  最悪ケースは1日の停止と100件分の課金。追加対策は副作用が大きい。
+- **system/user プロンプトが構造的に分離されていない** —
+  ruby_llm の標準的な使い方に従った結果。防御はプロント文言のみ。
+
