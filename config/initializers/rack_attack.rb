@@ -1,6 +1,6 @@
 class Rack::Attack
   throttle("req/ip", limit: 2, period: 1.minutes) do |req|
-    req.ip if req.path == "/diagnoses" && req.post?
+    req.ip if req.path.chomp("/") == "/diagnoses" && req.post?
   end
 
   DIAGNOSES_DAILY_LIMIT = 100
@@ -8,7 +8,7 @@ class Rack::Attack
   throttle("diagnoses/global",
            limit: ->(_req) { DIAGNOSES_DAILY_LIMIT },
            period: 1.day) do |req|
-    "global" if req.post? && req.path == "/diagnoses"
+    "global" if req.post? && req.path.chomp("/") == "/diagnoses"
   end
 
   DIAGNOSES_IP_DAILY_LIMIT = 10
@@ -16,7 +16,7 @@ class Rack::Attack
   throttle("diagnoses/ip-daily",
            limit: ->(_req) { DIAGNOSES_IP_DAILY_LIMIT },
            period: 1.day) do |req|
-    req.ip if req.post? && req.path == "/diagnoses"
+    req.ip if req.post? && req.path.chomp("/") == "/diagnoses"
   end
 
   ActiveSupport::Notifications.subscribe("throttle.rack_attack") do |name, start, finish, instrumenter_id, payload|

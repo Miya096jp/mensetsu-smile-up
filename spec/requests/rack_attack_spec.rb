@@ -17,6 +17,18 @@ RSpec.describe "RackAttach", type: :request do
       expect(response.status).to eq 429
     end
 
+    it "returns 429 over throttle limit with a trailing slash" do
+      3.times { post "/diagnoses/", params: { photos: [] } }
+      expect(response.status).to eq 429
+    end
+
+    it "counts requests with and without a trailing slash together" do
+      post "/diagnoses", params: { photos: [] }
+      post "/diagnoses/", params: { photos: [] }
+      post "/diagnoses", params: { photos: [] }
+      expect(response.status).to eq 429
+    end
+
     describe "global daily limit" do
       before do
         stub_const("Rack::Attack::DIAGNOSES_DAILY_LIMIT", 2)
