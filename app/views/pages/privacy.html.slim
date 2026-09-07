@@ -13,7 +13,7 @@ header.bg-white.border-b.border-stone-200
 main.bg-stone-50.min-h-screen.px-6.py-10
   .max-w-2xl.mx-auto.text-stone-800.flex.flex-col.gap-6
     h1.text-2xl.font-bold.text-stone-900.text-center プライバシーポリシー
-    p.text-sm.text-stone-500.text-center 最終更新日：2026年7月5日
+    p.text-sm.text-stone-500.text-center 最終更新日：2026年9月7日
 
     section.flex.flex-col.gap-2
       h2.text-lg.font-bold.text-stone-900 第1条（目的）
@@ -25,25 +25,26 @@ main.bg-stone-50.min-h-screen.px-6.py-10
 
     section.flex.flex-col.gap-2
       h2.text-lg.font-bold.text-stone-900 第3条（取得する個人情報とその取得方法）
-      p 本サービスでは、ユーザーから直接個人情報を取得することはありません。ユーザーは、1分間の模擬面接を行い、その話す様子をカメラで映します。この際、バックグラウンドで写真が切り抜かれ、AIに送信されます。動画が録画されることはありません。
+      p 本サービスでは、氏名、メールアドレス等の登録情報を取得することはありません。ユーザーは1分間の模擬面接を行い、その様子をカメラで撮影します。この際、映像から静止画が2枚自動的に切り出され、AIによる分析のために送信されます。動画が録画・保存されることはありません。
 
     section.flex.flex-col.gap-2
       h2.text-lg.font-bold.text-stone-900 第4条（個人情報の利用目的）
       p 本サービスにおいて、ユーザーから送信された写真は、AIによる面接印象の分析および改善アドバイスの生成のためにのみ利用されます。
 
     section.flex.flex-col.gap-2
-      h2.text-lg.font-bold.text-stone-900 第5条（個人情報の第三者提供）
+      h2.text-lg.font-bold.text-stone-900 第5条（外部サービスへの送信）
       ol.list-decimal.pl-5.flex.flex-col.gap-1
-        li 本サービスでは、ユーザーから送信された写真は、第4条に定める目的のためにのみ利用され、第三者に提供されることはありません。
-        li AIによる分析が完了した後、送信された写真はサーバーにもデバイスにも一切保存されません。
-        li AIが診断した画像も、AIの学習には一切使用されません。
+        li 本サービスは、ユーザーから送信された写真を、AIによる分析のためGoogle LLCが提供するGemini APIに送信します。これは第4条に定める目的の遂行のためであり、それ以外の目的で第三者に提供することはありません。
+        li 送信された写真は、Googleのポリシーにより、AIの学習には使用されません。
+        li 本サービスのサーバーおよびユーザーのデバイスに、写真が保存されることはありません。分析完了後、メモリ上のデータは破棄されます。
 
     section.flex.flex-col.gap-2
       h2.text-lg.font-bold.text-stone-900 第6条（個人情報の安全管理措置）
       p 本サービスは、ユーザーから送信された写真の漏洩、滅失、毀損等を防止するため、技術的な安全管理措置を講じます。具体的には、以下の措置を講じます。
       ol.list-decimal.pl-5.flex.flex-col.gap-1
-        li 送信された写真は、分析完了後速やかに削除され、保存されません。
+        li 送信された写真はファイルとして保存されず、分析処理の完了とともに破棄されます。
         li AIによる分析プロセスにおいては、必要最小限の情報のみが利用されます。
+        li 通信はすべてHTTPSにより暗号化されます。
 
     section.flex.flex-col.gap-2
       h2.text-lg.font-bold.text-stone-900 第7条（個人情報に関するお問い合わせ窓口）
