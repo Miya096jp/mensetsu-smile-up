@@ -8,12 +8,12 @@ RSpec.describe "RackAttach", type: :request do
     end
 
     it "not returns 429 within throttle limit" do
-      3.times { post "/diagnoses", params: { photos: [] } }
+      2.times { post "/diagnoses", params: { photos: [] } }
       expect(response.status).not_to eq 429
     end
 
     it "returns 429 over throttle limit" do
-      4.times { post "/diagnoses", params: { photos: [] } }
+      3.times { post "/diagnoses", params: { photos: [] } }
       expect(response.status).to eq 429
     end
 
