@@ -49,7 +49,9 @@ main.bg-stone-50.min-h-screen.px-6.py-10
     section.flex.flex-col.gap-2
       h2.text-lg.font-bold.text-stone-900 第7条（個人情報に関するお問い合わせ窓口）
       p 本プライバシーポリシーに関するお問い合わせは、以下の窓口までご連絡ください。
-      p.text-stone-600 お問い合わせ先：個人開発者（連絡先は別途指定）
+      p.text-stone-600
+        | お問い合わせ先：
+        = mail_to "miyawaki.yske+mensetsu@gmail.com", class: "text-amber-700 underline hover:text-amber-800"
 
     section.flex.flex-col.gap-2
       h2.text-lg.font-bold.text-stone-900 第8条（本プライバシーポリシーの変更）
