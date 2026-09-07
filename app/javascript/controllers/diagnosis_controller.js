@@ -138,10 +138,13 @@ export default class extends Controller {
 			formData.append("photos[]", blob);
 		});
 
+		this.abortController = new AbortController();
+
 		try {
 			const response = await fetch("/diagnoses", {
 				method: "POST",
 				body: formData,
+				signal: this.abortController.signal,
 				headers: {
 					"X-CSRF-Token": document.querySelector('meta[name="csrf-token"]')
 						.content,
@@ -160,6 +163,7 @@ export default class extends Controller {
 			this.aiDiagnosisTarget.classList.remove("hidden");
 			this.loaderTarget.classList.add("hidden");
 		} catch (e) {
+			if (e.name === "AbortError") return;
 			console.error("POST failed", e);
 			this.teardown();
 			await this.startCamera();
@@ -184,6 +188,7 @@ export default class extends Controller {
 		this.isRunning = false;
 		clearTimeout(this.prepTimer);
 		clearInterval(this.intervalTimer);
+		this.abortController?.abort();
 		this.stopCamera();
 		this.stopInterviewVideo();
 		if (this.onEnded) {
