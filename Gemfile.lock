@@ -336,7 +336,7 @@ GEM
       ruby_llm-schema (~> 0)
       zeitwerk (~> 2)
     ruby_llm-schema (0.4.0)
-    ruby_llm-test (0.2.0)
+    ruby_llm-test (0.3.0)
       ruby_llm (>= 1.5.0)
     rubyzip (3.5.0)
     securerandom (0.4.1)
@@ -448,7 +448,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-rails-omakase
   ruby_llm (~> 1.16)
-  ruby_llm-test (~> 0.2.0)
+  ruby_llm-test (~> 0.3.0)
   selenium-webdriver
   slim-rails
   solid_cable
@@ -578,7 +578,7 @@ CHECKSUMS
   ruby-progressbar (1.13.0) sha256=80fc9c47a9b640d6834e0dc7b3c94c9df37f08cb072b7761e4a71e22cff29b33
   ruby_llm (1.16.0) sha256=26bd5310cf2ce55f74a60f8aae0b0d0327b586ff4532c84828103c3b2b905a18
   ruby_llm-schema (0.4.0) sha256=e930f5a5316f9301bff3fb7fe572e44727d05bb8e50621001bbb49a47d63b8da
-  ruby_llm-test (0.2.0) sha256=b4f431a84e47e9bab82e92010e45907293ff2f584558821b2893ffcf4f0dad88
+  ruby_llm-test (0.3.0) sha256=548e0a978b9f3ee7f5651428abc29a0e7bce1ed63944fd1b95d4264707f60553
   rubyzip (3.5.0) sha256=f77c49d737a849b662f6ca4de473f31b4ecd8288f1c9f901a5c820641f0f8d7c
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   selenium-webdriver (4.48.0) sha256=0c8376ebc8a0a4879343fe6fe6eccdcea76748611cd25de370b33eded2077a94
