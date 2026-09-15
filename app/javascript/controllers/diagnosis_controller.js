@@ -89,6 +89,7 @@ export default class extends Controller {
 			this.teardown();
 			await this.startCamera();
 			this.reset("予期せぬエラーが発生しました。もう一度お試しください。");
+			return;
 		}
 		this.intervalTimer = setInterval(async () => {
 			try {
