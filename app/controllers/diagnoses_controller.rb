@@ -3,15 +3,15 @@ class DiagnosesController < ApplicationController
   end
 
   def create
-    dianosis_request = DiagnosisRequest.new(photos: photo_params[:photos])
+    diagnosis_request = DiagnosisRequest.new(photos: photo_params[:photos])
 
-    if dianosis_request.invalid?
-      Rails.logger.warn("[ValidationError] #{dianosis_request.errors.full_messages.join(', ')}")
+    if diagnosis_request.invalid?
+      Rails.logger.warn("[ValidationError] #{diagnosis_request.errors.full_messages.join(', ')}")
       render json: { message: "不正なリクエストです" }, status: :unprocessable_entity
       return
     end
 
-    diagnosis = Llm::DiagnoseImpression.call(photos: photo_params[:photos])
+    diagnosis = Llm::DiagnoseImpression.call(photos: diagnosis_request.photos)
     render json: { content: diagnosis.content }, status: :ok
   rescue RubyLLM::RateLimitError, RubyLLM::ServerError, RubyLLM::ServiceUnavailableError, RubyLLM::OverloadedError, Faraday::TimeoutError, Faraday::ConnectionFailed, Llm::DiagnoseImpression::InvalidResponse => e
     Rails.logger.error("[UpstreamError] #{e.class}: #{e.message}")
