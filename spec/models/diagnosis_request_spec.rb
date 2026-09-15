@@ -82,4 +82,12 @@ RSpec.describe DiagnosisRequest, type: :model do
     expect(result).not_to be_valid
     expect(result.errors[:photos]).to include("のデータ容量が不正です")
   end
+
+  it "detects oversized photos even when a non-file element is present" do
+    stub_const("DiagnosisRequest::MAX_FILE_SIZE", 1)
+    photos = [ "x", file_fixture_upload("photo.jpg", "image/jpeg") ]
+    result = DiagnosisRequest.new(photos: photos)
+    result.valid?
+    expect(result.errors[:photos]).to include("のデータ容量が不正です")
+  end
 end
