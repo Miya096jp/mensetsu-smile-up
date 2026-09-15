@@ -33,7 +33,7 @@ class DiagnosisRequest
   def photos_must_be_within_size_limit
     return if photos.blank? || !photos.is_a?(Array)
     photos.each do |photo|
-      return if !photo.respond_to?(:tempfile)
+      next unless photo.respond_to?(:tempfile)
       errors.add(:photos, "のデータ容量が不正です") if photo.size >= MAX_FILE_SIZE
     end
   end
