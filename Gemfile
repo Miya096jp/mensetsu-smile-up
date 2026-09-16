@@ -73,4 +73,4 @@ gem "tailwindcss-rails", "~> 4.6"
 
 gem "ruby_llm", "~> 1.16"
 
-gem "ruby_llm-test", "~> 0.2.0", group: :test
+gem "ruby_llm-test", "~> 0.3.0", group: :test
