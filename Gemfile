@@ -71,6 +71,7 @@ end
 
 gem "tailwindcss-rails", "~> 4.6"
 
-gem "ruby_llm", "~> 1.16"
+# CVE-2026-67991 の修正が 2.0.0.rc1 のみのため固定。正式版が出たら ~> 2.0 に変更する
+gem "ruby_llm", "2.0.0.rc1"
 
-gem "ruby_llm-test", "~> 0.2.0", group: :test
+gem "ruby_llm-test", "~> 0.3.0", group: :test
