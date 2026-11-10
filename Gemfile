@@ -69,7 +69,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "tailwindcss-rails", "~> 4.6"
+gem "tailwindcss-rails", "~> 4.7"
 
 # CVE-2026-67991 の修正が 2.0.0.rc1 のみのため固定。正式版が出たら ~> 2.0 に変更する
 gem "ruby_llm", "2.0.0"
