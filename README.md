@@ -52,7 +52,7 @@ https://mensetsu-smile-up.com/
 Docker desktop
 
 ## 技術スタック
-- バックエンド: Ruby 4.0.5 / Rails 8.1.3
+- バックエンド: Ruby 4.0.5 / Rails 8.1.4.1
 - フロントエンド: Hotwire (Turbo / Stimulus), Tailwind CSS (tailwindcss-rails)
 - LLM: Gemini 2.5 Flash, RubyLLM
 - テスト: RSpec
