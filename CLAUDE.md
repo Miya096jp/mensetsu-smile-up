@@ -107,6 +107,6 @@ upload). `config/environments/production.rb` sets `force_ssl`/`assume_ssl`.
 
 ## Stack notes
 
-Ruby 4.0.5 / Rails 8.1. SQLite + the solid_* gems are present from the Rails 8 default
+Ruby 4.0.10 / Rails 8.1. SQLite + the solid_* gems are present from the Rails 8 default
 stack but there are no app tables. `allow_browser versions: :modern` in
 `ApplicationController` gates old browsers.
