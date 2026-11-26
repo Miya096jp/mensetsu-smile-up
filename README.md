@@ -54,7 +54,7 @@ Docker desktop
 ## 技術スタック
 - バックエンド: Ruby 4.0.10 / Rails 8.1.4.1
 - フロントエンド: Hotwire (Turbo / Stimulus), Tailwind CSS (tailwindcss-rails)
-- LLM: Gemini 2.5 Flash, RubyLLM
+- LLM: Gemini 3.5 Flash, RubyLLM
 - テスト: RSpec
 - コード品質: RuboCop, Biome
 - CI/CD: GitHub Actions

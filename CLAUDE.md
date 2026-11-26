@@ -80,7 +80,7 @@ captures) — don't remove it.
    photos, each `image/jpeg` (checked via `Marcel::MimeType`), each `< 150.kilobytes`.
    Invalid → `422` JSON `{ message: "不正なリクエストです" }`.
 2. `Llm::DiagnoseImpression.call(photos:)` (`app/services/llm/`) reads the system prompt
-   from `app/prompts/diagnose_impression.md`, calls `RubyLLM.chat(model: "gemini-2.5-flash")`
+   from `app/prompts/diagnose_impression.md`, calls `RubyLLM.chat(model: "gemini-3.5-flash")`
    with the images, and raises `InvalidResponse` if the reply exceeds `MAX_LENGTH` (500).
 3. Errors are mapped to user-facing JSON + status in the controller `rescue` chain:
    RubyLLM rate/server errors and `InvalidResponse` → `503`; anything else → `500`.
